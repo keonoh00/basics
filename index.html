@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New Tab</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <div class="js-clock">
+          <h1>00:00</h1>
+        </div>
+        <div class='js-date'>
+          <h3></h3>
+        </div>
+        <div class='input_form'>
+          <div class='input_item'>
+            <form class="js-form form">
+              <input type="text" placeholder="이름을 적어주세요" />
+            </form>
+          </div>
+          <div class='input_item'>
+            <h2 class="js-gre greetings"></h2>
+            <form class="js-toDoForm todoform">
+              <input type="text" placeholder="오늘의 할일" />
+            </form>
+          </div>
+        </div>
+        <!-- Start of todo list display -->
+        <div class="js-toDoListContainer">
+        </div>
+        <div class="js-weather weather"></div>
+        <script src="clock.js"></script>
+        <script src="userInfo.js"></script>
+        <script src="functions.js"></script>
+        <!-- background takes long time to load so disabled
+        <script src="background.js"></script>
+        -->
+        <script src="weather.js"></script>
+    </body>
+
+</html>
