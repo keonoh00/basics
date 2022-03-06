@@ -19,9 +19,8 @@ const ScrollView = styled.ScrollView`
   margin-bottom: 20px;
 `;
 
-const TrendingScroll = styled.FlatList`
+const TrendingScroll = styled.ScrollView`
   margin-top: 10px;
-  margin-bottom: 10px;
 `;
 
 const Loader = styled.View`
@@ -32,10 +31,9 @@ const Loader = styled.View`
 
 const ListTitle = styled.Text<{ isDark: boolean }>`
   color: ${(props) => (props.isDark ? "white" : "black")};
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   margin-left: 20px;
-  margin-top: 10px;
 `;
 
 const ListContainer = styled.View`
@@ -44,7 +42,7 @@ const ListContainer = styled.View`
 
 const ComingSoonTitle = styled(ListTitle)<{ isDark: boolean }>`
   margin-bottom: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -128,19 +126,19 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
       <ListContainer>
         <ListTitle isDark={isDark}>Trending Movies</ListTitle>
         <TrendingScroll
-          data={trending}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingLeft: 30 }}
-          renderItem={({ item }) => (
+          contentContainerStyle={{ paddingLeft: 20 }}
+        >
+          {trending.map((movie: any) => (
             <HorizontalMedia
-              id={item.id}
-              posterPath={item.poster_path}
-              originalTitle={item.original_title}
-              voteAverage={item.vote_average}
+              id={movie.id}
+              posterPath={movie.poster_path}
+              originalTitle={movie.original_title}
+              voteAverage={movie.vote_average}
             />
-          )}
-        />
+          ))}
+        </TrendingScroll>
         <ComingSoonTitle isDark={isDark}>Coming Soon</ComingSoonTitle>
         {upcoming.map((movie: any) => (
           <VerticalMedia

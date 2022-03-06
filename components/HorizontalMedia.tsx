@@ -9,10 +9,6 @@ const Movie = styled.View`
   align-items: center;
 `;
 
-const TrendingScroll = styled.ScrollView`
-  margin-top: 10px;
-`;
-
 const Title = styled.Text<{ isDark: boolean }>`
   color: ${(props) => (props.isDark ? "white" : "black")};
   margin-top: 5px;
@@ -21,28 +17,28 @@ const Title = styled.Text<{ isDark: boolean }>`
 `;
 
 interface HorizontalMediaProps {
-  movies: any;
+  id: string;
+  posterPath: string;
+  originalTitle: string;
+  voteAverage: number;
 }
 
-const HorizontalMedia: React.FC<HorizontalMediaProps> = ({ movies }) => {
+const HorizontalMedia: React.FC<HorizontalMediaProps> = ({
+  id,
+  posterPath,
+  originalTitle,
+  voteAverage,
+}) => {
   const isDark = useColorScheme() === "dark";
   return (
-    <TrendingScroll
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingLeft: 20 }}
-    >
-      {movies.map((movie: any) => (
-        <Movie key={movie.id}>
-          <Poster path={movie.poster_path} />
-          <Title isDark={isDark}>
-            {movie.original_title.slice(0, 9)}
-            {movie.original_title.length > 9 ? "..." : null}
-          </Title>
-          <Rating score={movie.vote_average} />
-        </Movie>
-      ))}
-    </TrendingScroll>
+    <Movie key={id}>
+      <Poster path={posterPath} />
+      <Title isDark={isDark}>
+        {originalTitle.slice(0, 9)}
+        {originalTitle.length > 9 ? "..." : null}
+      </Title>
+      <Rating score={voteAverage} />
+    </Movie>
   );
 };
 
