@@ -20,27 +20,56 @@ const ListTitle = styled.Text<{ isDark: boolean }>`
   color: ${(props) => (props.isDark ? "white" : "black")};
   font-size: 16px;
   font-weight: 600;
-  margin-left: 30px;
+  margin-left: 20px;
 `;
-
-const Container = styled.View``;
 
 const Movie = styled.View`
   margin-right: 10px;
 `;
 
 const TrendingScroll = styled.ScrollView`
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const Title = styled.Text<{ isDark: boolean }>`
   color: ${(props) => (props.isDark ? "white" : "black")};
   margin-top: 5px;
   margin-bottom: 5px;
+  font-size: 14px;
 `;
 const Votes = styled.Text<{ isDark: boolean }>`
   color: ${(props) => (props.isDark ? "white" : "black")};
   font-size: 10px;
+`;
+
+const ListContainer = styled.View`
+  margin-bottom: 20px;
+`;
+
+const HorizontalMovie = styled.View`
+  padding: 0 30px;
+  flex-direction: row;
+  margin-bottom: 5px;
+`;
+
+const HorizontalMovieColumn = styled.View`
+  margin-left: 10px;
+  width: 90%;
+`;
+
+const Overview = styled.Text<{ isDark: boolean }>`
+  color: ${(props) => (props.isDark ? "white" : "black")};
+  font-size: 12px;
+  width: 80%;
+  margin-top: 5px;
+`;
+
+const ReleaseDate = styled(Overview)<{ isDark: boolean }>`
+  font-size: 10px;
+`;
+
+const ComingSoonTitle = styled(ListTitle)<{ isDark: boolean }>`
+  margin-bottom: 10px;
 `;
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -89,50 +118,71 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = ({
       <ActivityIndicator />
     </Loader>
   ) : (
-    <Container>
-      <ScrollView>
-        <Swiper
-          loop
-          horizontal
-          autoplay
-          showsPagination={false}
-          showsButtons={false}
-          containerStyle={{
-            width: "100%",
-            height: SCREEN_HEIGHT / 6,
-            marginBottom: 20,
-          }}
-        >
-          {nowPlayingMovies.map((movie) => (
-            <Slide
-              key={movie.id}
-              backdropPath={movie.backdrop_path}
-              originalTitle={movie.original_title}
-              posterPath={movie.poster_path}
-              voteAverage={movie.vote_average}
-              overview={movie.overview}
-            />
-          ))}
-        </Swiper>
-        <ListTitle isDark={isDark}>Trending Movies</ListTitle>
-      </ScrollView>
-      <TrendingScroll
+    <ScrollView>
+      <Swiper
+        loop
         horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingLeft: 20 }}
+        autoplay
+        showsPagination={false}
+        showsButtons={false}
+        containerStyle={{
+          width: "100%",
+          height: SCREEN_HEIGHT / 5,
+          marginBottom: 20,
+        }}
       >
-        {trending.map((movie) => (
-          <Movie key={movie.id}>
-            <Poster path={movie.poster_path} />
-            <Title isDark={isDark}>
-              {movie.original_title.slice(0, 8)}
-              {movie.original_title.length > 8 ? "..." : null}
-            </Title>
-            <Votes isDark={isDark}>⭐️{movie.vote_average}/10</Votes>
-          </Movie>
+        {nowPlayingMovies.map((movie) => (
+          <Slide
+            key={movie.id}
+            backdropPath={movie.backdrop_path}
+            originalTitle={movie.original_title}
+            posterPath={movie.poster_path}
+            voteAverage={movie.vote_average}
+            overview={movie.overview}
+          />
         ))}
-      </TrendingScroll>
-    </Container>
+      </Swiper>
+      <ListContainer>
+        <ListTitle isDark={isDark}>Trending Movies</ListTitle>
+        <TrendingScroll
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingLeft: 20 }}
+        >
+          {trending.map((movie) => (
+            <Movie key={movie.id}>
+              <Poster path={movie.poster_path} />
+              <Title isDark={isDark}>
+                {movie.original_title.slice(0, 9)}
+                {movie.original_title.length > 9 ? "..." : null}
+              </Title>
+              {movie.vote_average > 0 ? (
+                <Votes isDark={isDark}>⭐️{movie.vote_average}/10</Votes>
+              ) : (
+                `Coming Soon`
+              )}
+            </Movie>
+          ))}
+        </TrendingScroll>
+      </ListContainer>
+      <ComingSoonTitle isDark={isDark}>Coming Soon</ComingSoonTitle>
+      {upcoming.map((movie) => (
+        <HorizontalMovie key={movie.id}>
+          <Poster path={movie.poster_path} />
+          <HorizontalMovieColumn>
+            <Title isDark={isDark}>{movie.original_title}</Title>
+            <ReleaseDate isDark={isDark}>
+              {new Date(movie.release_date).toLocaleDateString("ko")}
+            </ReleaseDate>
+            <Overview isDark={isDark}>
+              {movie.overview !== "" && movie.overview.length > 150
+                ? `${movie.overview.slice(0, 150)}...`
+                : movie.overview}
+            </Overview>
+          </HorizontalMovieColumn>
+        </HorizontalMovie>
+      ))}
+    </ScrollView>
   );
 };
 
