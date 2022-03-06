@@ -4,19 +4,18 @@ import styled from "styled-components/native";
 import Poster from "./Poster";
 
 const VerticalMovie = styled.View`
-  padding: 0 30px;
+  padding: 0 20px;
   flex-direction: row;
-  margin-bottom: 5px;
 `;
 
 const VerticalMovieColumn = styled.View`
   margin-left: 10px;
   width: 90%;
+  max-height: 100%;
 `;
 
 const Title = styled.Text<{ isDark: boolean }>`
   color: ${(props) => (props.isDark ? "white" : "black")};
-  margin-top: 5px;
   margin-bottom: 5px;
   font-size: 14px;
 `;

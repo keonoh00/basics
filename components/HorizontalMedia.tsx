@@ -5,7 +5,6 @@ import Poster from "./Poster";
 import Rating from "./Rating";
 
 const Movie = styled.View`
-  margin-right: 10px;
   align-items: center;
 `;
 
