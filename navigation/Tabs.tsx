@@ -4,7 +4,7 @@ import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import { useColorScheme } from "react-native";
-import { black, gray, purple, white } from "../colors";
+import { BG_BLACK, ACC_GRAY, ACC_PURPLE, BG_WHITE } from "../colors";
 import { Ionicons } from "@expo/vector-icons";
 import Stack from "./Stack";
 
@@ -14,13 +14,14 @@ const Tabs = () => {
   const isDark = useColorScheme() === "dark";
   return (
     <Tab.Navigator
+      sceneContainerStyle={{ backgroundColor: isDark ? BG_BLACK : BG_WHITE }}
       screenOptions={{
-        tabBarStyle: { backgroundColor: isDark ? black : white },
-        tabBarActiveTintColor: purple,
-        tabBarInactiveTintColor: gray,
-        headerTitleStyle: { color: purple },
+        tabBarStyle: { backgroundColor: isDark ? BG_BLACK : BG_WHITE },
+        tabBarActiveTintColor: ACC_PURPLE,
+        tabBarInactiveTintColor: ACC_GRAY,
+        headerTitleStyle: { color: ACC_PURPLE },
         headerStyle: {
-          backgroundColor: isDark ? black : white,
+          backgroundColor: isDark ? BG_BLACK : BG_WHITE,
         },
         tabBarLabelStyle: {
           fontSize: 12,

@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/native-stack";
 import { View, Text, TouchableOpacity } from "react-native";
 import { DarkTheme, DefaultTheme } from "@react-navigation/native";
-import { black, purple } from "../colors";
+import { BG_BLACK, ACC_PURPLE } from "../colors";
 
 const ToSearch: React.FC<NativeStackScreenProps<any, "Search">> = ({
   navigation: { navigate },
@@ -35,7 +35,7 @@ const Stack = () => (
   <NativeStack.Navigator
     screenOptions={{
       headerBackTitleVisible: false,
-      headerTintColor: purple,
+      headerTintColor: ACC_PURPLE,
     }}
   >
     <NativeStack.Screen name="Search" component={ToSearch} />
