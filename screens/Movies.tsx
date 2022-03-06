@@ -108,6 +108,8 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
     </Loader>
   ) : (
     <FlatList
+      onRefresh={onRefresh}
+      refreshing={refreshing}
       ListHeaderComponent={
         <>
           <Swiper
