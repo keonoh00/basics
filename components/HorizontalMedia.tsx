@@ -16,7 +16,7 @@ const Title = styled.Text<{ isDark: boolean }>`
 `;
 
 interface HorizontalMediaProps {
-  id: string;
+  id: number;
   posterPath: string;
   originalTitle: string;
   voteAverage: number;

@@ -8,6 +8,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import RootNav from "./navigation/Root";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styled";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+
+const queryClient = new QueryClient();
 
 // Need to restart Metro server after new packages are installed
 export default function App() {
@@ -18,10 +21,12 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <NavigationContainer>
-        <RootNav />
-      </NavigationContainer>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <NavigationContainer>
+          <RootNav />
+        </NavigationContainer>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

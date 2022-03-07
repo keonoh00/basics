@@ -32,7 +32,7 @@ const ReleaseDate = styled(Overview)<{ isDark: boolean }>`
 `;
 
 interface HorizonatalMovieProps {
-  id: string;
+  id: number;
   posterPath: string;
   originalTitle: string;
   releaseDate: string;

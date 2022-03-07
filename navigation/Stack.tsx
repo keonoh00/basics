@@ -3,9 +3,8 @@ import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-import { View, Text, TouchableOpacity } from "react-native";
-import { DarkTheme, DefaultTheme } from "@react-navigation/native";
-import { BG_BLACK, ACC_PURPLE } from "../colors";
+import { Text, TouchableOpacity } from "react-native";
+import { ACC_PURPLE } from "../colors";
 
 const ToSearch: React.FC<NativeStackScreenProps<any, "Search">> = ({
   navigation: { navigate },

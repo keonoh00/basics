@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
@@ -6,7 +6,6 @@ import Search from "../screens/Search";
 import { useColorScheme } from "react-native";
 import { BG_BLACK, ACC_GRAY, ACC_PURPLE, BG_WHITE } from "../colors";
 import { Ionicons } from "@expo/vector-icons";
-import Stack from "./Stack";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +15,7 @@ const Tabs = () => {
     <Tab.Navigator
       sceneContainerStyle={{ backgroundColor: isDark ? BG_BLACK : BG_WHITE }}
       screenOptions={{
+        unmountOnBlur: true,
         tabBarStyle: { backgroundColor: isDark ? BG_BLACK : BG_WHITE },
         tabBarActiveTintColor: ACC_PURPLE,
         tabBarInactiveTintColor: ACC_GRAY,
