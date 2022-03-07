@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AppLoading from "expo-app-loading";
 import { useColorScheme } from "react-native";
 import * as Font from "expo-font";
@@ -8,7 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import RootNav from "./navigation/Root";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styled";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 

@@ -42,7 +42,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Tv"
+        name="TV"
         component={Tv}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
