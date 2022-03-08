@@ -4,9 +4,10 @@ import React, { useEffect } from "react";
 import {
   Dimensions,
   StyleSheet,
-  Text,
+  TouchableOpacity,
   useColorScheme,
-  Linking,
+  Share,
+  Platform,
 } from "react-native";
 import { useQuery } from "react-query";
 import styled from "styled-components/native";
@@ -71,24 +72,67 @@ type RootStackParamList = {
 type DetailScreenProps = NativeStackScreenProps<RootStackParamList, "Detail">;
 
 const Detail: React.FC<DetailScreenProps> = ({
-  navigation: { setOptions },
+  navigation: { setOptions, goBack },
   route: { params },
 }) => {
-  const isDark = useColorScheme() === "dark";
   const isMovie = "original_title" in params;
   const { isLoading, data } = useQuery(
     [isMovie ? "Movie" : "tv", params.id],
     isMovie ? moviesAPI.detail : tvAPI.detail
   );
+  const isDark = useColorScheme() === "dark";
   const openYTLink = async (id) => {
     const YouTubeURL = `https://m.youtube.com/watch?v=${id}`;
     await WebBrowser.openBrowserAsync(YouTubeURL);
   };
+  const ShareMedia = async () => {
+    const isAndroid = Platform.OS === "android";
+    const sharingURL = isMovie
+      ? `https://www.imdb.com/title/${data.imdb_id}`
+      : data.homepage;
+    if (isAndroid) {
+      await Share.share({
+        message: `${params.overview}\nCheck it Out: ${sharingURL}`,
+      });
+    } else {
+      await Share.share({
+        url: sharingURL,
+        title: isMovie ? params.original_title : params.original_name,
+      });
+    }
+  };
+  const ShareButton = () => (
+    <TouchableOpacity onPress={ShareMedia}>
+      <Ionicons
+        name="share-outline"
+        color={isDark ? "white" : "black"}
+        size={24}
+      />
+    </TouchableOpacity>
+  );
+  const BackButton = () => (
+    <TouchableOpacity onPress={() => goBack()}>
+      <Ionicons
+        name="chevron-back"
+        color={isDark ? "white" : "black"}
+        size={24}
+      />
+    </TouchableOpacity>
+  );
   useEffect(() => {
     setOptions({
       title: isMovie ? "Movie" : "TV Show",
+      headerRight: () => <ShareButton />,
+      headerLeft: () => <BackButton />,
     });
   });
+  useEffect(() => {
+    if (data) {
+      setOptions({
+        headerRight: () => <ShareButton />,
+      });
+    }
+  }, [data]);
   return (
     <Container>
       <Header>
@@ -103,9 +147,7 @@ const Detail: React.FC<DetailScreenProps> = ({
         <Column>
           <Poster path={params.poster_path || ""} />
           <Title isDark={isDark}>
-            {"original_title" in params
-              ? params.original_title
-              : params.original_name}
+            {isMovie ? params.original_title : params.original_name}
           </Title>
         </Column>
       </Header>
