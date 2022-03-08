@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Dimensions,
-  FlatList,
   RefreshControl,
   useColorScheme,
 } from "react-native";
@@ -12,6 +11,11 @@ import Swiper from "react-native-swiper";
 import Slide from "../components/Slide";
 import HorizontalMedia from "../components/HorizontalMedia";
 import VerticalMedia from "../components/VerticalMedia";
+import { Movie } from "../api";
+
+// **********************************************************************************
+// This file is not used but just to compare using FLATLIST and SCROLLVIEW Components
+// **********************************************************************************
 
 const API_KEY = "98efb7e246733262fc6a43e9555c4feb";
 
@@ -112,7 +116,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           marginBottom: 20,
         }}
       >
-        {nowPlayingMovies.map((movie: any) => (
+        {nowPlayingMovies.map((movie) => (
           <Slide
             key={movie.id}
             backdropPath={movie.backdrop_path}
@@ -120,6 +124,8 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
             posterPath={movie.poster_path}
             voteAverage={movie.vote_average}
             overview={movie.overview}
+            // fullData is used in detail page which is used in FlatList version
+            fullData={movie}
           />
         ))}
       </Swiper>
@@ -130,17 +136,19 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingLeft: 20 }}
         >
-          {trending.map((movie: any) => (
+          {trending.map((movie) => (
             <HorizontalMedia
               id={movie.id}
               posterPath={movie.poster_path}
               originalTitle={movie.original_title}
               voteAverage={movie.vote_average}
+              // fullData is used in detail page which is used in FlatList version
+              fullData={movie}
             />
           ))}
         </TrendingScroll>
         <ComingSoonTitle isDark={isDark}>Coming Soon</ComingSoonTitle>
-        {upcoming.map((movie: any) => (
+        {upcoming.map((movie) => (
           <VerticalMedia
             key={movie.id}
             id={movie.id}
@@ -148,6 +156,8 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
             originalTitle={movie.original_title}
             releaseDate={movie.release_date}
             overview={movie.overview}
+            // fullData is used in detail page which is used in FlatList version
+            fullData={movie}
           />
         ))}
       </ListContainer>

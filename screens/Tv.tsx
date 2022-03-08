@@ -35,9 +35,15 @@ const Tv = () => {
       }
       contentContainerStyle={{ paddingBottom: 20 }}
     >
-      <HorizontalList title={"Today OnAir"} data={todayData.results} />
-      <HorizontalList title={"Top Rated👍"} data={topData.results} />
-      <HorizontalList title={"Trending TV"} data={trendingData.results} />
+      {todayData ? (
+        <HorizontalList title={"Today OnAir"} data={todayData.results} />
+      ) : null}
+      {topData ? (
+        <HorizontalList title={"Top Rated👍"} data={topData.results} />
+      ) : null}
+      {trendingData ? (
+        <HorizontalList title={"Trending TV"} data={trendingData.results} />
+      ) : null}
     </ScrollView>
   );
 };

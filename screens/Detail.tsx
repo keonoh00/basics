@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useQuery } from "react-query";
 import styled from "styled-components/native";
-import { Movie, moviesAPI, TV, tvAPI } from "../api";
+import { Movie, MovieDetails, moviesAPI, TV, tvAPI, TVDetails } from "../api";
 import { BG_BLACK, BG_WHITE } from "../colors";
 import Loader from "../components/Loader";
 import Poster from "../components/Poster";
@@ -76,29 +76,32 @@ const Detail: React.FC<DetailScreenProps> = ({
   route: { params },
 }) => {
   const isMovie = "original_title" in params;
-  const { isLoading, data } = useQuery(
+  const { isLoading, data } = useQuery<MovieDetails | TVDetails>(
     [isMovie ? "Movie" : "tv", params.id],
     isMovie ? moviesAPI.detail : tvAPI.detail
   );
   const isDark = useColorScheme() === "dark";
-  const openYTLink = async (id) => {
+  const openYTLink = async (id: string) => {
     const YouTubeURL = `https://m.youtube.com/watch?v=${id}`;
     await WebBrowser.openBrowserAsync(YouTubeURL);
   };
   const ShareMedia = async () => {
-    const isAndroid = Platform.OS === "android";
-    const sharingURL = isMovie
-      ? `https://www.imdb.com/title/${data.imdb_id}`
-      : data.homepage;
-    if (isAndroid) {
-      await Share.share({
-        message: `${params.overview}\nCheck it Out: ${sharingURL}`,
-      });
-    } else {
-      await Share.share({
-        url: sharingURL,
-        title: isMovie ? params.original_title : params.original_name,
-      });
+    if (data) {
+      const isAndroid = Platform.OS === "android";
+      const sharingURL =
+        isMovie && "imdb_id" in data
+          ? `https://www.imdb.com/title/${data.imdb_id}`
+          : data.homepage;
+      if (isAndroid) {
+        await Share.share({
+          message: `${params.overview}\nCheck it Out: ${sharingURL}`,
+        });
+      } else {
+        await Share.share({
+          url: sharingURL,
+          title: isMovie ? params.original_title : params.original_name,
+        });
+      }
     }
   };
   const ShareButton = () => (
