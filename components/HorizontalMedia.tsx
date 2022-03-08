@@ -1,10 +1,12 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { useColorScheme } from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
 import styled from "styled-components/native";
+import { Movie, TV } from "../api";
 import Poster from "./Poster";
 import Rating from "./Rating";
 
-const Movie = styled.View`
+const MovieView = styled.View`
   align-items: center;
 `;
 
@@ -20,6 +22,7 @@ interface HorizontalMediaProps {
   posterPath: string;
   originalTitle: string;
   voteAverage: number;
+  fullData: Movie | TV;
 }
 
 const HorizontalMedia: React.FC<HorizontalMediaProps> = ({
@@ -27,17 +30,30 @@ const HorizontalMedia: React.FC<HorizontalMediaProps> = ({
   posterPath,
   originalTitle,
   voteAverage,
+  fullData,
 }) => {
   const isDark = useColorScheme() === "dark";
+  const navigation = useNavigation();
+  const goToDetail = () => {
+    //@ts-ignore
+    navigation.navigate("Stack", {
+      screen: "Detail",
+      params: {
+        ...fullData,
+      },
+    });
+  };
   return (
-    <Movie key={id}>
-      <Poster path={posterPath} />
-      <Title isDark={isDark}>
-        {originalTitle.slice(0, 9)}
-        {originalTitle.length > 9 ? "..." : null}
-      </Title>
-      <Rating score={voteAverage} />
-    </Movie>
+    <TouchableOpacity onPress={goToDetail}>
+      <MovieView key={id}>
+        <Poster path={posterPath} />
+        <Title isDark={isDark}>
+          {originalTitle.slice(0, 9)}
+          {originalTitle.length > 9 ? "..." : null}
+        </Title>
+        <Rating score={voteAverage} />
+      </MovieView>
+    </TouchableOpacity>
   );
 };
 

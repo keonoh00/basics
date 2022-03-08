@@ -14,17 +14,13 @@ const VerticalSpacer = styled.View`
   height: 15px;
 `;
 
-const TrendingTitle = styled.Text<{ isDark: boolean }>`
+const ComingSoonTitle = styled.Text<{ isDark: boolean }>`
   color: ${(props) => (props.isDark ? "white" : "black")};
   font-size: 17px;
   font-weight: 600;
   margin-left: 20px;
-  margin-top: 10px;
-`;
-
-const ComingSoonTitle = styled(TrendingTitle)<{ isDark: boolean }>`
   margin-bottom: 10px;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -78,6 +74,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
                 posterPath={movie.poster_path || ""}
                 voteAverage={movie.vote_average}
                 overview={movie.overview}
+                fullData={movie}
               />
             ))}
           </Swiper>
@@ -101,6 +98,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           originalTitle={item.original_title}
           releaseDate={item.release_date}
           overview={item.overview}
+          fullData={item}
         />
       )}
     />

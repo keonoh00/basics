@@ -12,7 +12,7 @@ const SearchBar = styled.TextInput`
   padding: 10px 15px;
   font-weight: 400;
   border-radius: 15px;
-  margin: 10px auto;
+  margin: 25px auto -5px auto;
   width: 90%;
   align-self: center;
 `;

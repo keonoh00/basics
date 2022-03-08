@@ -37,7 +37,7 @@ const Tv = () => {
     >
       <HorizontalList title={"Today OnAir"} data={todayData.results} />
       <HorizontalList title={"Top Rated👍"} data={topData.results} />
-      <HorizontalList title={"Trending"} data={trendingData.results} />
+      <HorizontalList title={"Trending TV"} data={trendingData.results} />
     </ScrollView>
   );
 };

@@ -1,6 +1,8 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { useColorScheme } from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
 import styled from "styled-components/native";
+import { Movie, TV } from "../api";
 import Poster from "./Poster";
 
 const VerticalMovie = styled.View`
@@ -37,6 +39,7 @@ interface HorizonatalMovieProps {
   originalTitle: string;
   releaseDate: string;
   overview: string;
+  fullData: Movie | TV;
 }
 
 const VerticalMedia: React.FC<HorizonatalMovieProps> = ({
@@ -45,23 +48,36 @@ const VerticalMedia: React.FC<HorizonatalMovieProps> = ({
   originalTitle,
   releaseDate,
   overview,
+  fullData,
 }) => {
   const isDark = useColorScheme() === "dark";
+  const navigation = useNavigation();
+  const goToDetail = () => {
+    //@ts-ignore
+    navigation.navigate("Stack", {
+      screen: "Detail",
+      params: {
+        ...fullData,
+      },
+    });
+  };
   return (
-    <VerticalMovie>
-      <Poster path={posterPath} />
-      <VerticalMovieColumn>
-        <Title isDark={isDark}>{originalTitle}</Title>
-        <ReleaseDate isDark={isDark}>
-          {new Date(releaseDate).toLocaleDateString("ko")}
-        </ReleaseDate>
-        <Overview isDark={isDark}>
-          {overview !== "" && overview.length > 150
-            ? `${overview.slice(0, 150)}...`
-            : overview}
-        </Overview>
-      </VerticalMovieColumn>
-    </VerticalMovie>
+    <TouchableOpacity onPress={goToDetail}>
+      <VerticalMovie>
+        <Poster path={posterPath} />
+        <VerticalMovieColumn>
+          <Title isDark={isDark}>{originalTitle}</Title>
+          <ReleaseDate isDark={isDark}>
+            {new Date(releaseDate).toLocaleDateString("ko")}
+          </ReleaseDate>
+          <Overview isDark={isDark}>
+            {overview !== "" && overview.length > 150
+              ? `${overview.slice(0, 150)}...`
+              : overview}
+          </Overview>
+        </VerticalMovieColumn>
+      </VerticalMovie>
+    </TouchableOpacity>
   );
 };
 
