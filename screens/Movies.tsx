@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import Swiper from "react-native-swiper";
 import Slide from "../components/Slide";
 import VerticalMedia from "../components/VerticalMedia";
-import { useQueryClient, useQuery } from "react-query";
+import { useQueryClient, useQuery, useInfiniteQuery } from "react-query";
 import { MovieResponse, moviesAPI } from "../api";
 import Loader from "../components/Loader";
 import HorizontalList from "../components/HorizontalList";
@@ -37,21 +37,40 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
     );
   const { isLoading: trendingLoading, data: trendingData } =
     useQuery<MovieResponse>(["movies", "trending"], moviesAPI.getTrending);
-  const { isLoading: upcomingLoading, data: upcomingData } =
-    useQuery<MovieResponse>(["movies", "upcoming"], moviesAPI.getUpcoming);
+  const {
+    isLoading: upcomingLoading,
+    data: upcomingData,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteQuery<MovieResponse>(
+    ["movies", "upcoming"],
+    moviesAPI.getUpcoming,
+    {
+      getNextPageParam: (currentPage) => {
+        const nextPage = currentPage.page + 1;
+        return nextPage > currentPage.total_pages ? null : nextPage;
+      },
+    }
+  );
   const onRefresh = async () => {
     setRefreshing(true);
     await queryClient.refetchQueries(["movies"]);
     setRefreshing(false);
   };
-
+  const loadMore = () => {
+    if (hasNextPage) {
+      fetchNextPage();
+    }
+  };
   const loading = nowPlayingLoading || trendingLoading || upcomingLoading;
   return loading ? (
     <Loader />
   ) : upcomingData ? (
     <FlatList
+      style={{ marginBottom: 30 }}
       onRefresh={onRefresh}
       refreshing={refreshing}
+      onEndReached={loadMore}
       ListHeaderComponent={
         <>
           <Swiper
@@ -87,7 +106,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           <ComingSoonTitle isDark={isDark}>Coming Soon</ComingSoonTitle>
         </>
       }
-      data={upcomingData.results}
+      data={upcomingData.pages.map((page) => page.results).flat()}
       keyExtractor={(item) => item.id + ""}
       ItemSeparatorComponent={VerticalSpacer}
       renderItem={({ item }) => (
