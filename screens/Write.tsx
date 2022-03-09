@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
 import colors from "../colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Alert } from "react-native";
+import { useDB } from "../context";
+import { useEffect } from "react";
 
 const View = styled.View`
   background-color: ${colors.bgColor};
@@ -86,6 +87,7 @@ const Write: React.FC<NativeStackScreenProps<any, "Write">> = ({
   navigation: { setOptions, goBack },
   route: { params },
 }) => {
+  const realm = useDB();
   const [feelings, setFeelings] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const onEmojiSelect = (emoji: string) => {
@@ -98,6 +100,14 @@ const Write: React.FC<NativeStackScreenProps<any, "Write">> = ({
     if (feelings == "" || selectedEmoji == "") {
       return Alert.alert("Please Complete the Form");
     }
+    realm.write(() => {
+      const feelingCreate = realm.create("Feeling", {
+        _id: Date.now(),
+        emotion: selectedEmoji,
+        message: feelings,
+      });
+    });
+    goBack();
   };
   return (
     <View>
@@ -117,11 +127,11 @@ const Write: React.FC<NativeStackScreenProps<any, "Write">> = ({
         returnKeyType="done"
         onSubmitEditing={onSubmit}
         value={feelings}
-        multiline
+        blurOnSubmit
         onChangeText={onChangeText}
         placeholder="Write!!! What ever you want"
       />
-      <Btn activeOpacity={0.8}>
+      <Btn onPress={onSubmit}>
         <BtnText>Save </BtnText>
       </Btn>
     </View>
