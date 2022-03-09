@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import colors from "../colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useDB } from "../context";
 import { useEffect } from "react";
 import { useState } from "react";
-import { FlatList } from "react-native";
+import { TouchableOpacity, FlatList } from "react-native";
 
 const View = styled.View`
   flex: 1;
@@ -46,6 +46,7 @@ const Card = styled.View`
 const Message = styled.Text`
   color: ${colors.textColor};
   margin: 5px 10px;
+  max-width: 84%;
 `;
 
 const EmojiContainer = styled.View`
@@ -66,6 +67,12 @@ const EmojiText = styled.Text`
   font-size: 18px;
 `;
 
+const Delete = styled.TouchableOpacity`
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+`;
+
 const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   navigation: { navigate },
 }) => {
@@ -73,21 +80,25 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   const [feelings, setFeelings] = useState([]);
   useEffect(() => {
     const feelings = realm.objects("Feeling");
-    setFeelings(feelings);
-    feelings.addListener(() => {
-      const feelings = realm.objects("Feeling");
-      setFeelings(feelings);
+    feelings.addListener((feelings, changes) => {
+      setFeelings(feelings.sorted("_id", true));
     });
     return () => {
       feelings.removeAllListeners();
     };
   }, []);
+
+  const onPress = (id) => {
+    realm.write(() => {
+      const feeling = realm.objectForPrimaryKey("Feeling", id);
+      realm.delete(feeling);
+    });
+  };
   return (
     <View>
       <Title>My Journal</Title>
       <FlatList
         data={feelings}
-        inverted
         ItemSeparatorComponent={Separator}
         contentContainerStyle={{ paddingBottom: 40 }}
         showsVerticalScrollIndicator={false}
@@ -99,6 +110,9 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
                 <EmojiText>{item.emotion}</EmojiText>
               </EmojiContainer>
               <Message>{item.message}</Message>
+              <Delete onPress={() => onPress(item._id)}>
+                <FontAwesome5 name="eraser" size={22} color="red" />
+              </Delete>
             </Card>
           );
         }}

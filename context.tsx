@@ -13,7 +13,7 @@ interface FeelingsType {
   primaryKey: number;
 }
 
-export const DBContext = React.createContext<FeelingsType>();
+export const DBContext = React.createContext();
 
 export const useDB = () => {
   return useContext(DBContext);
