@@ -7,6 +7,7 @@ import { useDB } from "../context";
 import { useEffect } from "react";
 import { useState } from "react";
 import { TouchableOpacity, FlatList } from "react-native";
+import { LayoutAnimation } from "react-native";
 
 const View = styled.View`
   flex: 1;
@@ -81,6 +82,8 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   useEffect(() => {
     const feelings = realm.objects("Feeling");
     feelings.addListener((feelings, changes) => {
+      // By declaring below animation, allowing React Native to animate whatever changes on state
+      LayoutAnimation.spring();
       setFeelings(feelings.sorted("_id", true));
     });
     return () => {
@@ -100,7 +103,7 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
       <FlatList
         data={feelings}
         ItemSeparatorComponent={Separator}
-        contentContainerStyle={{ paddingBottom: 40 }}
+        contentContainerStyle={{ paddingBottom: 40, paddingTop: 20 }}
         showsVerticalScrollIndicator={false}
         keyExtractor={(feeling) => feeling._id + ""}
         renderItem={({ item }) => {

@@ -19,7 +19,8 @@ const Title = styled.Text`
   font-weight: 700;
 `;
 const TextInput = styled.TextInput`
-  background-color: azure;
+  background-color: ${colors.cardColor};
+  color: white;
   border-radius: 30px;
   padding: 20px 20px;
   margin: 0 20px;
