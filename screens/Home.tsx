@@ -6,11 +6,13 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useDB } from "../context";
 import { useEffect } from "react";
 import { useState } from "react";
-import { TouchableOpacity, FlatList } from "react-native";
 import { LayoutAnimation } from "react-native";
+import { AdMobBanner } from "expo-ads-admob";
 
 const View = styled.View`
   flex: 1;
+  justify-content: center;
+  align-items: center;
   padding: 0px 20px;
   padding-top: 80px;
   background-color: ${colors.bgColor};
@@ -22,6 +24,11 @@ const Title = styled.Text`
   margin-bottom: 20px;
   padding: 0 20px;
   font-weight: 600;
+  width: 100%;
+`;
+
+const FlatList = styled.FlatList`
+  width: 100%;
 `;
 
 const Btn = styled.TouchableOpacity`
@@ -47,15 +54,13 @@ const Card = styled.View`
 const Message = styled.Text`
   color: ${colors.textColor};
   margin: 5px 10px;
-  max-width: 84%;
+  max-width: 75%;
 `;
 
 const EmojiContainer = styled.View`
   border-style: solid;
   border-right-color: grey;
   border-right-width: 1px;
-  justify-content: center;
-  align-items: center;
   padding: 15px 5px;
 `;
 
@@ -70,7 +75,7 @@ const EmojiText = styled.Text`
 
 const Delete = styled.TouchableOpacity`
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   right: 20px;
 `;
 
@@ -100,10 +105,18 @@ const Home: React.FC<NativeStackScreenProps<any, "Home">> = ({
   return (
     <View>
       <Title>My Journal</Title>
+      <AdMobBanner
+        bannerSize="fullBanner"
+        adUnitID="ca-app-pub-3940256099942544/2934735716" // Test ID, Replace with your-admob-unit-id
+      />
       <FlatList
         data={feelings}
         ItemSeparatorComponent={Separator}
-        contentContainerStyle={{ paddingBottom: 40, paddingTop: 20 }}
+        contentContainerStyle={{
+          marginBottom: 40,
+          marginTop: 20,
+          width: "100%",
+        }}
         showsVerticalScrollIndicator={false}
         keyExtractor={(feeling) => feeling._id + ""}
         renderItem={({ item }) => {

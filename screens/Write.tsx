@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Alert } from "react-native";
 import { useDB } from "../context";
 import { useEffect } from "react";
+import { AdMobInterstitial } from "expo-ads-admob";
 
 const View = styled.View`
   background-color: ${colors.bgColor};
@@ -20,7 +21,7 @@ const Title = styled.Text`
 `;
 const TextInput = styled.TextInput`
   background-color: ${colors.cardColor};
-  color: white;
+  color: ${colors.textColor};
   border-radius: 30px;
   padding: 20px 20px;
   margin: 0 20px;
@@ -97,18 +98,25 @@ const Write: React.FC<NativeStackScreenProps<any, "Write">> = ({
   const onChangeText = (text: string) => {
     setFeelings(text);
   };
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (feelings == "" || selectedEmoji == "") {
       return Alert.alert("Please Complete the Form");
     }
-    realm.write(() => {
-      const feelingCreate = realm.create("Feeling", {
-        _id: Date.now(),
-        emotion: selectedEmoji,
-        message: feelings,
+    await AdMobInterstitial.setAdUnitID(
+      "ca-app-pub-3940256099942544/4411468910",
+    );
+    await AdMobInterstitial.requestAdAsync();
+    await AdMobInterstitial.showAdAsync();
+    AdMobInterstitial.addEventListener("interstitialDidClose", () => {
+      realm.write(() => {
+        const feelingCreate = realm.create("Feeling", {
+          _id: Date.now(),
+          emotion: selectedEmoji,
+          message: feelings,
+        });
       });
+      goBack();
     });
-    goBack();
   };
   return (
     <View>
