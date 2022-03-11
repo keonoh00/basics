@@ -5,7 +5,9 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react-native",
-    "lib": ["es2017"],
+    "lib": [
+      "es2017"
+    ],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
@@ -17,5 +19,9 @@
     "metro.config.js",
     "jest.config.js"
   ],
-  "types": ["jest", "styled-components-react-native"]
+  "types": [
+    "jest",
+    "styled-components-react-native"
+  ],
+  "extends": "expo/tsconfig.base"
 }
