@@ -24,7 +24,6 @@ interface CoinProps {
 const Home = () => {
   const { isLoading, data } = useQuery("coins", coins);
   const [cleanData, setCleanData] = useState([]);
-  console.log(data);
   useEffect(() => {
     if (data) {
       setCleanData(
@@ -49,7 +48,7 @@ const Home = () => {
         contentContainerStyle={{ padding: 10 }}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <CoinRender index={index} symbol={item.symbol} />
+          <CoinRender id={item.id} index={index} symbol={item.symbol} />
         )}
       />
     </Container>
