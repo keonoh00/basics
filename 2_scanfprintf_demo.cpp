@@ -4,6 +4,8 @@ int main(void)
 {
   char name[256];
   printf("Enter your name: ");
+  // scanf and scanf_s are the same, but scanf_s is more secure.
+  // scanf_s("%s", name, sizeof(name));
   scanf("%s", name);
 
   int age;
