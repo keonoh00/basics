@@ -37,9 +37,7 @@ style: |
 
 - CSS 란?
 - Inline, Internal, and External Stylesheets
-- Padding and Margin
-- Text Styling
-- Flexbox
+- Selectors
 - Styling Examples
 
 </div>
@@ -157,7 +155,9 @@ style: |
     <title>웹페이지 제목</title>
   </head>
   <body>
-    <p style="color: red; font-size: 24px;">빨간 24픽셀 텍스트</p>
+    <p style="color: red; font-size: 24px;">
+      빨간 24픽셀 텍스트
+    </p>
   </body>
 </html>
 ```
@@ -166,9 +166,7 @@ style: |
 
 <div>
 
-### 결과물
-
-
+![Inline Styling Example](./assets/InlineStylingExample.png "Inline Styling Example")
 
 </div>
 
@@ -179,12 +177,6 @@ style: |
 ## Embeded Styling
 
 <div class="columns">
-
-<div>
-
-### 결과물
-
-</div>
 
 <div>
 
@@ -206,6 +198,12 @@ style: |
   </body>
 </html>
 ```
+
+</div>
+
+<div>
+
+![Embedded Styling Example](./assets/EmbeddedStylingExample.png "Embedded Styling Example")
 
 </div>
 
@@ -261,7 +259,33 @@ style: |
 
 ## External Styling
 
+![External Styling Example](./assets/ExternalStylingExample.png "External Styling Example")
 
+---
+
+## CSS Selector
+
+- 모든 텍스트가 같은 색, 같은 크기, 같은 위치에 있으면 재미없는 웹사이트
+- HTML Attribute를 이용하여 구분
+  - 각각의 태그에 이름을 붙여주는 법
+  - `class`, `id`, `type` 를 사용할 수 있다.
+- HTML에 attribute를 우선 선언하고 CSS에서 스타일을 설정
+
+---
+
+## `class` Attribute 사용법
+
+---
+
+## `id` Attribute 사용법
+
+---
+
+## `type` Attribute 사용법
+
+---
+
+## Styling Examples
 
 ---
 
