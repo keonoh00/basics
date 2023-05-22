@@ -12,7 +12,7 @@ function App() {
   const onSubmitToDo = (event) => {
     const toDo = event.target[0].value
     event.preventDefault()
-    setToDoList([...toDoList, toDo])
+    setToDoList([toDo, ...toDoList])
     setToDo("")
   }
 
@@ -26,6 +26,12 @@ function App() {
         <input type='text' placeholder='Write your task...' onChange={onWriteToDo} value={toDo} />
         <button>Add</button>
       </form>
+
+      <ul>
+        {toDoList.map((toDo, index) => {
+          return <li key={index}>{toDo}</li>
+        })}
+      </ul>
     </div>
   );
 }
