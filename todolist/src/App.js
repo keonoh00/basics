@@ -7,7 +7,6 @@ import { Header } from './components/Header/Header';
 function App() {
   const [toDoList, setToDoList] = useState([])
 
-
   const onUpdateToDoList = (toDo) => {
     setToDoList([toDo, ...toDoList])
   }
