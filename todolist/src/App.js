@@ -1,20 +1,24 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-
   const [toDo, setToDo] = useState("")
+  const [toDoList, setToDoList] = useState([])
 
   const onWriteToDo = (event) => {
-    console.log(event)
     setToDo(event.target.value)
   }
 
   const onSubmitToDo = (event) => {
-    console.log(event)
+    const toDo = event.target[0].value
     event.preventDefault()
-    setToDo("0")
+    setToDoList([...toDoList, toDo])
+    setToDo("")
   }
+
+  useEffect(() => {
+    console.log(toDoList)
+  }, [toDoList])
 
   return (
     <div>
