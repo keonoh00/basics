@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+
+  const [toDo, setToDo] = useState("")
+
+  const onWriteToDo = (event) => {
+    console.log(event)
+    setToDo(event.target.value)
+  }
+
+  const onSubmitToDo = (event) => {
+    console.log(event)
+    event.preventDefault()
+    setToDo("0")
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <form onSubmit={onSubmitToDo}>
+        <input type='text' placeholder='Write your task...' onChange={onWriteToDo} value={toDo} />
+        <button>Add</button>
+      </form>
     </div>
   );
 }
