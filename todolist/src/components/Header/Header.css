@@ -12,6 +12,13 @@
   color: white;
 }
 
+.date {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: white;
+}
+
 .clock {
   font-size: 5rem;
   font-weight: 700;
