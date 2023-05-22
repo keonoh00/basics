@@ -584,7 +584,6 @@ npm start
 - Requirements:
   - Todo List에 새로운 Todo를 추가할 수 있다.
   - Todo List에서 Todo를 삭제할 수 있다.
-  - Todo List에서 Todo의 완료 여부를 토글할 수 있다.
   - 날짜와 시간이 표시된다.
 
 <p style="bottom: 1rem; position: absolute;">소스코드: http://github.com/keonoh00/react-tutorial</p>
