@@ -225,13 +225,13 @@ style: |
 
 <div>
 
-<h4>index.html</h4>
+<h4>external_styling.html</h4>
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./external_styling.css">
     <title>웹페이지 제목</title>
   </head>
   <body>
@@ -244,7 +244,7 @@ style: |
 
 <div>
 
-<h4>index.css</h4>
+<h4>external_styling.css</h4>
 
 ```css
 /* 모든 p 태그의 */
