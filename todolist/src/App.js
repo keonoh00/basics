@@ -11,6 +11,14 @@ function App() {
     setToDoList([toDo, ...toDoList])
   }
 
+  const onDeleteToDoList = (index) => {
+    const newToDoList = toDoList.filter((toDo, toDoIndex) => {
+      return toDoIndex !== index
+    })
+    setToDoList(newToDoList)
+  }
+
+
   useEffect(() => {
     console.log(toDoList)
   }, [toDoList])
@@ -19,7 +27,7 @@ function App() {
     <div class="container">
       <Header />
       <ToDoInput onUpdateToDoList={onUpdateToDoList} />
-      <ToDoList toDoList={toDoList} />
+      <ToDoList toDoList={toDoList} onDeleteToDoList={onDeleteToDoList} />
     </div>
   );
 }
