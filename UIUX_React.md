@@ -99,7 +99,7 @@ style: |
 
 <div>
 
-오른쪽 코드 결과물 삽입
+![height:600px margin-left:100px](./assets/html_structure.png "HTML Structure")
 
 </div>
 
@@ -174,7 +174,7 @@ style: |
 
 <div>
 
-![Inline Styling Example](./assets/InlineStylingExample.png "Inline Styling Example")
+![width:600px](./assets/inline_styling.png "Inline Styling Example")
 
 </div>
 
@@ -211,7 +211,7 @@ style: |
 
 <div>
 
-![Embedded Styling Example](./assets/EmbeddedStylingExample.png "Embedded Styling Example")
+![width:600px](./assets/embedded_styling.png "Embedded Styling Example")
 
 </div>
 
@@ -264,7 +264,11 @@ p {
 
 ## External Styling
 
-![External Styling Example](./assets/ExternalStylingExample.png "External Styling Example")
+<center>
+
+![width:1000px](./assets/external_styling.png "External Styling Example")
+
+</center>
 
 ---
 
