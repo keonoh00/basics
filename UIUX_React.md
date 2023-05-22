@@ -146,7 +146,7 @@ style: |
   - 일관성 유지
   - 유지보수의 용이성
   - 반응형 디자인
-- 3가지 CSS 적용방법: Inline, Embeded, External
+- 3가지 CSS 적용방법: Inline, Embedded, External
 
 ---
 
@@ -182,7 +182,7 @@ style: |
 
 ---
 
-## Embeded Styling
+## Embedded Styling
 
 <div class="columns">
 
