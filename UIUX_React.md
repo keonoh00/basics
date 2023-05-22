@@ -228,7 +228,6 @@ style: |
   </head>
   <body>
     <p>텍스트</p>
-    <p>다른 텍스트</p>
   </body>
 </html>
 ```
@@ -240,13 +239,11 @@ style: |
 <h4>index.css</h4>
 
 ```css
-.text {
-  font-size: 24px;
-  color: black;
-}
-
-.another-text {
+/* 모든 p 태그의 */
+p {
+  /* 폰트 크기는 36px */
   font-size: 36px;
+  /* 보라색으로 변경  */
   color: purple;
 }
 ```
@@ -273,7 +270,7 @@ style: |
 
 ---
 
-## `class`, `id`, `type` Attribute 사용법
+## `class`, `id`, `type` Selector 사용법
 
 <div class="columns">
 
@@ -295,6 +292,17 @@ style: |
 ### CSS
 
 ```css
+.this-is-class {
+  background-color: blue;
+}
+
+#this-is-id {
+  color: red;
+}
+
+[type="this-is-type"] {
+  color: green;
+}
 ```
 
 </div>
@@ -329,8 +337,10 @@ style: |
 ## Tips
 
 - UI 구현에서 가장 중요한 것은 네모를 그리는 것
-- 재활용 가능한 컴포넌트를 만들어서 사용하는 것이 편리
+  - 큰 네모부터 작은 네모까지
 - `flex`를 이용하여 레이아웃을 구성하는 것이 편리
+- 이것 저것 시도해보면서 익숙해지는 것이 중요
+- [CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) 에서 다양한 CSS 속성 확인 가능
 
 ---
 
@@ -457,6 +467,113 @@ const add = (a, b) => {
 
 const add = (a, b) => a + b;
 ```
+
+---
+
+## React 소개
+
+<div class="columns">
+
+<div>
+
+- React는 Facebook에서 만든 JavaScript 프레임워크
+- 프레임워크란?
+  - 프로그램의 특정 문제를 해결하기 위해 상호 협력하는 클래스와 인터페이스의 집합
+  - 프레임워크는 뼈대를 제공하여 개발자가 뼈대 위에 코드를 작성
+  - 프레임워크는 개발자가 코드를 작성하는 방식을 제한
+
+</div>
+
+<div>
+
+- React는 컴포넌트 기반으로 작동
+- 컴포넌트란?
+  - UI를 구성하는 작은 단위
+  - 재사용이 가능한 API
+- React는 컴포넌트를 이용하여 UI를 구성
+
+<svg style="margin-left: 250px" width="20%" height="20%" viewBox="-10.5 -9.45 21 18.9" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 flex origin-center transition-all ease-in-out"><circle cx="0" cy="0" r="2" fill="currentColor"></circle><g stroke="currentColor" stroke-width="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg>
+
+</div>
+
+</div>
+
+---
+
+## React 프로젝트 만들기
+
+- React 프로젝트를 만들기 위해서는 `Node.js`가 설치되어 있어야 한다.
+- `Node.js` 설치 후 `npm`을 이용하여 `create-react-app`을 설치
+
+```bash
+npx create-react-app <프로젝트 이름>
+cd <프로젝트 이름>
+npm start
+```
+
+---
+
+## React 프로젝트 구조
+
+<div class="columns">
+
+<div>
+
+```bash
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── reportWebVitals.js              
+```
+
+</div>
+
+<div>
+
+- `node_modules` 폴더는 각종 의존성 모듈이 위치 (라이브러리들)
+- `package.json` 파일은 프로젝트의 정보와 의존성 모듈 정보가 담겨있음
+- `.gitignore` 파일은 git remote에 올리지 않을 파일들을 지정
+- `src` 폴더가 메인 폴더
+  - `index.js` 파일이 가장 기본 파일
+  - `index.js` 가 리액트 파일인 `App.js`를 `import` 하여 사용
+
+</div>
+
+</div>
+
+---
+
+## State, Props, and Hooks
+
+- React에서는 컴포넌트의 상태를 관리하기 위해 `state`를 사용
+  - 렌더링을 trigger하는 변수
+- `props`는 컴포넌트 외부에서 전달되는 데이터
+  - 컴포넌트에 input이자 컴포넌트의 렌더링을 trigger하는 데이터
+- `hooks`은 함수형 컴포넌트에서 `state`와 `props`를 사용할 수 있게 해주는 함수
+  - 리액트형 함수
+
+---
+
+## Todo App 만들기
+
+- Todo App은 간단한 Todo List를 만드는 프로젝트
+- Requirements:
+  - Todo List에 새로운 Todo를 추가할 수 있다.
+  - Todo List에서 Todo를 삭제할 수 있다.
+  - Todo List에서 Todo의 완료 여부를 토글할 수 있다.
+  - 날짜와 시간이 표시된다.
 
 ---
 
