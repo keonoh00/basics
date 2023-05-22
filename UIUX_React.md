@@ -38,7 +38,8 @@ style: |
 - CSS 란?
 - Inline, Internal, and External Stylesheets
 - Selectors
-- Styling Examples
+- 자주 사용하는 스타일링
+- Tips
 
 </div>
 
@@ -65,11 +66,10 @@ style: |
 
 ### React.js
 
-- React 소개
-- 프레임워크란?
+- React 소개 & 프레임워크란?
 - React 프로젝트 만들기
 - State, Props, and Hooks
-- Component 만들기
+- Todo App 만들기
 
 </div>
 
@@ -273,19 +273,190 @@ style: |
 
 ---
 
-## `class` Attribute 사용법
+## `class`, `id`, `type` Attribute 사용법
+
+<div class="columns">
+
+<div>
+
+### HTML
+
+```html
+<div class="this-is-class">
+  <p id="this-is-id">Random</p>
+  <p type="this-is-type">Hello</p>
+</div>
+```
+
+</div>
+
+<div>
+
+### CSS
+
+```css
+```
+
+</div>
+
+</div>
 
 ---
 
-## `id` Attribute 사용법
+## 자주 사용하는 스타일링
+
+<div class="columns">
+
+<div>
+
+- 크기는 `width`와 `height`
+- 여백은 `padding` 혹은 `margin`
+- 정렬은 `justify-content`와 `align-content`
+- 색상관련은 `color`, `font-color`, `background-color`
+- 가로정렬을 원할때는 `flex-direction: row`, 기본값은 `column`
+
+</div>
+
+<div>
+
+![width:500px](./assets/margin-padding.png "Example Styling")
+
+</div>
+</div>
 
 ---
 
-## `type` Attribute 사용법
+## Tips
+
+- UI 구현에서 가장 중요한 것은 네모를 그리는 것
+- 재활용 가능한 컴포넌트를 만들어서 사용하는 것이 편리
+- `flex`를 이용하여 레이아웃을 구성하는 것이 편리
 
 ---
 
-## Styling Examples
+## JavaScript 개요
+
+<div class="columns">
+
+<div>
+
+- JavaScript는 웹 브라우저에서 실행되는 언어로 웹페이지를 동적으로 만들기 위해 사용하는 언어
+- 페이지 이동, 프레임 관리, 히스토리 관리 등 다양한 기능 수행
+- 일반적으로 `css`처럼 `html` 파일 내부에 작성 혹은 `js` 파일로 작성 후 링크
+
+</div>
+
+<div>
+
+- `<head>` 태그 내부에 작성
+  - 웹브라우저가 HTML을 `<head>`부터 읽기 때문에 `<body>` 태그보다 먼저 실행
+
+```html
+<head>
+  <!-- 내부 작성법 -->
+  <script>
+    // JavaScript 코드 작성
+  </script>
+  <script src="./index.js"></script> <!-- js 파일 링크 -->
+</head>
+```
+
+</div>
+
+</div>
+
+---
+
+## 변수 선언 및 연산자
+
+<div class="columns">
+
+<div>
+
+```javascript
+let a = 1; // 변수
+const b = 2; // 상수
+var c = 3; // ES6 이전에 사용하던 변수 선언 방식
+```
+
+</div>
+
+<div style="margin-bottom:10px">
+
+```javascript
+a + b; // 3
+a - b; // -1
+a * b; // 2
+a / b; // 0.5
+a % b; // 1
+a ** b; // 1
+a++; // 2
+a--; // 1
+a += b; // 3
+a -= b; // 1
+a *= b; // 2
+a /= b; // 1
+a %= b; // 1
+a **= b; // 1
+```
+
+</div>
+
+</div>
+
+---
+
+## 조건문과 반복문
+
+<div class="columns">
+
+<div>
+
+```javascript
+if (a > b) {
+  console.log("a가 b보다 큽니다.");
+} else if (a < b) {
+  console.log("a가 b보다 작습니다.");
+} else {
+  console.log("a와 b가 같습니다.");
+}
+```
+
+</div>
+
+<div>
+
+```javascript
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+
+while (a < b) {
+  console.log("a가 b보다 작습니다.");
+  a++;
+}
+```
+
+</div>
+
+</div>
+
+---
+
+## 함수
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+
+// es6 이후
+const add = (a, b) => {
+  return a + b;
+};
+
+const add = (a, b) => a + b;
+```
 
 ---
 
