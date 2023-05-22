@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./ToDoInput.css";
 
 const ToDoInput = ({ onUpdateToDoList }) => {
   const [toDo, setToDo] = useState("")
@@ -15,9 +16,8 @@ const ToDoInput = ({ onUpdateToDoList }) => {
   }
 
   return (
-    <form onSubmit={onSubmitToDo}>
-      <input type='text' placeholder='Write your task...' onChange={onWriteToDo} value={toDo} />
-      <button>Add</button>
+    <form class="todo-form" onSubmit={onSubmitToDo}>
+      <input class="todo-input" type='text' placeholder='Write your task...' onChange={onWriteToDo} value={toDo} />
     </form>
   )
 }

@@ -11,5 +11,10 @@ export const Header = () => {
     return () => clearInterval(interval)
   }, [])
 
-  return <div class="header-container"><h1>To Do List</h1><h1>{time}</h1></div>
+  return (
+    <div class="header-container">
+      <p className="clock">{time}</p>
+      <p className="title">To Do List</p>
+    </div>
+  )
 }
