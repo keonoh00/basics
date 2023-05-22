@@ -16,6 +16,8 @@ style: |
 
 발표자: 김건오
 
+<p style="bottom: 1rem; position: absolute;">강의 자료: http://github.com/keonoh00/react-tutorial</p>
+
 ---
 
 ## Outline (1)
@@ -45,6 +47,8 @@ style: |
 
 </div>
 
+<p style="bottom: 1rem; position: absolute;">강의 자료: http://github.com/keonoh00/react-tutorial</p>
+
 ---
 
 ## Outline (2)
@@ -72,6 +76,10 @@ style: |
 - Todo App 만들기
 
 </div>
+
+</div>
+
+<p style="bottom: 1rem; position: absolute;">강의 자료: http://github.com/keonoh00/react-tutorial</p>
 
 ---
 
