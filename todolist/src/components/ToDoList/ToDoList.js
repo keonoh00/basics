@@ -18,7 +18,7 @@ export const ToDoList = ({ toDoList, onDeleteToDoList }) => {
     <div>
       {toDoList.map((toDo, index) => {
         return (
-          <div>
+          <div class="todo-list-container">
             <p class="todo-list-row" key={index}>{sliceCharacters(toDo)}</p>
             <button class="todo-list-delete-button" onClick={() => onDeleteList(index)}>Delete</button>
           </div>
