@@ -89,7 +89,7 @@ style: |
   - 웹사이트를 구성하는 Markup Language
 
 - Markup Language
-  - 문서의 구조요 내용을 구분하고 구성할 수 있게 해주는 언어
+  - 문서의 구조와 내용을 구분하고 구성할 수 있게 해주는 언어
 
 ---
 
@@ -331,7 +331,7 @@ p {
 
 - 크기는 `width`와 `height`
 - 여백은 `padding` 혹은 `margin`
-- 정렬은 `justify-content`와 `align-content`
+- 정렬은 `justify-content`와 `align-items`
 - 색상관련은 `color`, `font-color`, `background-color`
 - 가로정렬을 원할때는 `flex-direction: row`, 기본값은 `column`
 
@@ -415,9 +415,9 @@ a ** b; // 1
 a++; // 2
 a--; // 1
 a += b; // 3
-a -= b; // 1
+a -= b; // -1
 a *= b; // 2
-a /= b; // 1
+a /= b; // 0.5
 a %= b; // 1
 a **= b; // 1
 ```
