@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-int main(void)
+void main(void)
 {
 
   int zeroToTwo = rand() % 3;      // 0, 1, 2

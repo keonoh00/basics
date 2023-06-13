@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(void)
+void main(void)
 {
   char name[256];
   printf("Enter your name: ");

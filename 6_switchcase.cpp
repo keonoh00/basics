@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-int main(void)
+void main(void)
 {
   srand(time(NULL));
   int rockPaperScissor = rand() % 3;

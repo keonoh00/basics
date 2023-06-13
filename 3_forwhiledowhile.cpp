@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(void)
+void main(void)
 {
   // For Loop
   for (int i = 0; i <= 5; i++)
