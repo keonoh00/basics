@@ -2,6 +2,19 @@
 
 int main(void)
 {
+  // Table of variables that can be used in printf
+
+  // Type    | Format
+  // -----------------
+  // Integer | %d
+  // Float   | %f
+  // Double  | %lf
+  // Char    | %c
+  // String  | %s
+  // Exponent| %e
+  // Hex     | %x
+  // -----------------
+
   // Example of using integer
   int i = 12;
   printf("This is an integer example\t%d\n", i);
