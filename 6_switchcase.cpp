@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-void main(void)
+int main(void)
 {
   srand(time(NULL));
   int rockPaperScissor = rand() % 3;
@@ -25,4 +25,6 @@ void main(void)
     printf("There is an unexpected argument");
     break;
   }
+
+  return 0;
 }

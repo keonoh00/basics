@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main(void)
+int main(void)
 {
   char name[256];
   printf("Enter your name: ");
@@ -32,4 +32,6 @@ void main(void)
   printf("Height: %lf\n", height);
   printf("Weight: %f\n", weight);
   printf("Done  : %s\n", what_do_you_do);
+
+  return 0;
 }

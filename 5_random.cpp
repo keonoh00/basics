@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-void main(void)
+int main(void)
 {
 
   int zeroToTwo = rand() % 3;      // 0, 1, 2
@@ -23,4 +23,6 @@ void main(void)
   {
     printf("%d", rand() % 10 + 1); // 1 - 100
   }
+
+  return 0;
 }

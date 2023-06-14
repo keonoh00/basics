@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main(void)
+int main(void)
 {
   // For Loop
   for (int i = 0; i <= 5; i++)
@@ -23,4 +23,6 @@ void main(void)
     printf("Hello Do While Loop %d\n", k);
     k++;
   } while (k <= 5);
+
+  return 0;
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main(void)
+int main(void)
 {
   int age = 15;
 
@@ -47,4 +47,6 @@ void main(void)
     }
     printf("Hello For Loop - %d\n", i);
   }
+
+  return 0;
 }

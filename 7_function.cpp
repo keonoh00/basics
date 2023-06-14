@@ -11,13 +11,15 @@ double multiply(int num1, int num2);
 // When nothingis returned then void
 void noReturnPrint(int num1, int num2, int multiplied);
 
-void main(void)
+int main(void)
 {
   for (int i = 0; i < 5; i++)
   {
     int multiplied = multiply(i, i + 1);
     noReturnPrint(i, i + 1, multiplied);
   }
+
+  return 0;
 }
 
 // Define the function which has been declared
