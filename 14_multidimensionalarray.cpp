@@ -51,7 +51,7 @@ int main(void)
     {
       for (int z = 0; z < thirdLayerLength; z++)
       {
-        printf("%d\n", randomArray[x][y][z]);
+        printf("Position (%d, %d, %d) - Value: %d\n", x + 1, y + 1, z + 1, randomArray[x][y][z]);
       }
     }
   }
