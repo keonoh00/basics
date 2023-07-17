@@ -120,3 +120,33 @@ server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
 ```
+
+### 5. Add `start` script in `package.json`
+
+```json
+{
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}
+```
+
+### 6. Run the server
+
+```bash
+npm start
+```
+
+If you encounter an error saying: Cannot use import statement outside a module
+Add `"type": "module"` in package.json
+
+```json
+{
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "type": "module"
+}
+```
+
+### 7. Open the browser and go to `http://localhost:4000`
