@@ -4,13 +4,19 @@ Simple Movie API using GraphQL, Apollo Server and NodeJS
 
 ## Table of Contents
 
-[APIs](#APIs)  
-[Apollo Server](#apollo-server)
-[Setup Process](#setup-process)
-[GraphQL Schema](#graphql-schema)
-[GraphQL Resolvers](#graphql-resolvers)
-[GraphQL Playground](#graphql-playground)
-[GraphQL React Demo](#graphql-react-demo)
+### [1. APIs](#APIs)
+
+### [2. Apollo Server](#apollo-server)
+
+### [3. Setup Process](#setup-process)
+
+### [4. GraphQL Schema](#graphql-schema)
+
+### [5. GraphQL Resolvers](#graphql-resolvers)
+
+### [6. GraphQL Playground](#graphql-playground)
+
+### [7. GraphQL React Demo](#graphql-react-demo)
 
 <a name="APIs">
 
@@ -400,5 +406,7 @@ mutation {
 </a>
 
 This project contains `ReactJS` demo using `GraphQL` and `Apollo Client`.
+
 Basically, this project is merged with React App which is created by `create-react-app`.
+
 Main reason upon merging is to use one `package.json` file without creating a new project.
