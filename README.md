@@ -38,7 +38,7 @@ GraphQL tries to solve problems of REST API.
 
 ### Try GraphQL online
 
-1. Go to [https://studio.apollographql.com/public/star-wars-swapi/variant/current/]([https://studio.apollographql.com/public/star-wars-swapi/variant/current/])
+1. Go to [https://studio.apollographql.com/public/star-wars-swapi/variant/current/](https://studio.apollographql.com/public/star-wars-swapi/variant/current/)
 2. In the Docs section, you can see the list of queries and mutations that you can use.
 3. Try queries and mutations using following examples.
 
