@@ -4,6 +4,10 @@ Simple Movie API using GraphQL, Apollo Server and NodeJS + ReactJS Demo
 
 You can follow below procedure to make project similar to this repository.
 
+## TODO
+
+- [ ] Styling
+
 ## Table of Contents
 
 ### [1. APIs](#APIs)
