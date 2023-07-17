@@ -304,3 +304,48 @@ const resolvers = {
   },
 };
 ```
+
+## GraphQL Playground
+
+GraphQL Playground is a GraphQL IDE that allows you to interact with the GraphQL API.
+You can use GraphQL Playground to test your GraphQL API.
+It is available in the browser and you can access it by going to `http://localhost:4000` or `url` defined by Apollo Client.
+
+### How to call a query
+
+In the parenthesis, you can define the arguments.
+You can get the result by defining the fields.
+However, the arguments and fields should be defined in the schema.
+If query does not require any arguments, you can omit the parenthesis.
+
+```gql
+query {
+  hello
+  user(id: "1") {
+    id
+    name
+    email
+    age
+    isMale
+    height
+  }
+}
+```
+
+### How to call a mutation
+
+You can call a mutation by using `mutation` keyword.
+You can define the arguments and fields in the same way as query.
+
+```gql
+mutation {
+  createUser(name: "John", email: "", age: 20, isMale: true, height: 180) {
+    id
+    name
+    email
+    age
+    isMale
+    height
+  }
+}
+```
