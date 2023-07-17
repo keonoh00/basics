@@ -1,6 +1,8 @@
 # movie-api-graphql
 
-Simple Movie API using GraphQL, Apollo Server and NodeJS
+Simple Movie API using GraphQL, Apollo Server and NodeJS.
+
+You can follow below procedure to make project similar to this repository.
 
 ## Table of Contents
 
@@ -412,16 +414,19 @@ Basically, this project is merged with React App which is created by `create-rea
 
 Main reason upon merging is to use one `package.json` file without creating a new project.
 
+But you can create a new project and follow the below process to setup your project.
+
 ### 1. Install dependencies
 
 ```bash
 npm install @apollo/client graphql
+npm install react-router-dom
 ```
 
 ### 2. Run the servers
 
 ```bash
-# This is for GraphQL Server
+# This is for GraphQL Server which you made in the previous steps
 # It should be running on port 4000 and keep running
 npm run server
 ```
@@ -491,3 +496,12 @@ const YourComponent = () => {
   return <div></div>;
 };
 ```
+
+More details can be found in `src` folder.
+I made some further improvements and added some comments to make it easier to understand.
+
+## Helpful Resources
+
+- [Apollo Dev Tools](https://www.apollographql.com/docs/react/development-testing/developer-tooling/)
+  - This tool allows to have additional tab in the browser to see the queries and mutations that are called.
+    The tab is accessible through tab `Apollo` in the browser, which will be shown through `inspect` option in the browser.
