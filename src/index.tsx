@@ -9,6 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    {/* ApolloProvider allows any of elements inside Application to access the client using useApolloClient Hook */}
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
