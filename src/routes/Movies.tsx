@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
 const ALL_MOVIES = gql`
@@ -43,17 +44,19 @@ const Movies = () => {
 
   return (
     <div>
+      <h1>All Movies</h1>
       {loading ? (
         <h1>Loading...</h1>
       ) : error ? (
         <h1>{"Opps something went wrong... :("}</h1>
       ) : (
-        movies?.map((item: Movie) => (
-          <>
-            <p>MovieID:{item.id}</p>
-            <p>Movie Title: {item.title}</p>
-          </>
-        ))
+        <ul>
+          {movies?.map((item: Movie) => (
+            <li key={item.id}>
+              <Link to={`/movie/${item.id}`}>{item.title}</Link>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
