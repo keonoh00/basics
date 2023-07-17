@@ -398,3 +398,7 @@ mutation {
 ## GraphQL React Demo
 
 </a>
+
+This project contains `ReactJS` demo using `GraphQL` and `Apollo Client`.
+Basically, this project is merged with React App which is created by `create-react-app`.
+Main reason upon merging is to use one `package.json` file without creating a new project.
