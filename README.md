@@ -411,3 +411,83 @@ This project contains `ReactJS` demo using `GraphQL` and `Apollo Client`.
 Basically, this project is merged with React App which is created by `create-react-app`.
 
 Main reason upon merging is to use one `package.json` file without creating a new project.
+
+### 1. Install dependencies
+
+```bash
+npm install @apollo/client graphql
+```
+
+### 2. Run the servers
+
+```bash
+# This is for GraphQL Server
+# It should be running on port 4000 and keep running
+npm run server
+```
+
+```bash
+# This is for React App
+# It should be running on port 3000 and keep running
+npm start
+```
+
+### 3. Create a new file `src/apolloClient.ts`
+
+```js
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000",
+  cache: new InMemoryCache(),
+});
+
+export default client;
+```
+
+`uri` should match the url of your GraphQL Server
+
+### 4. Wrapping your application with `ApolloProvider` in `src/index.tsx`
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { ApolloProvider } from "@apollo/client";
+import client from "./apolloClient";
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById("root")
+);
+```
+
+### 5. Accessing GraphQL API in any of the files through `useApolloClient` hook
+
+```js
+import { useEffect } from "react";
+import { useApolloClient, gql } from "@apollo/client";
+
+const YourComponent = () => {
+  const client = useApolloClient();
+
+  useEffect(() => {
+    // Example of using client
+    client
+      .query({
+        query: gql`
+          {
+            allMovies {
+              title
+            }
+          }
+        `,
+      })
+      .then((data) => console.log(data));
+  }, []);
+
+  return <div></div>;
+};
+```
