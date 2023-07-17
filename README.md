@@ -1,4 +1,4 @@
-# graphql-api-tutorial
+# hi-graphql
 
 Simple Movie API using GraphQL, Apollo Server and NodeJS + ReactJS Demo
 
@@ -119,8 +119,8 @@ cd <project-name>
 npm init -y
 
 # For this project:
-mkdir movie-api
-cd movie-api
+mkdir hi-graphql
+cd hi-graphql
 npm init -y
 ```
 
