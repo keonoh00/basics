@@ -138,7 +138,7 @@ npm start
 ```
 
 If you encounter an error saying: Cannot use import statement outside a module
-Add `"type": "module"` in package.json
+Add `"type": "module"` in `package.json`
 
 ```json
 {
@@ -150,3 +150,69 @@ Add `"type": "module"` in package.json
 ```
 
 ### 7. Open the browser and go to `http://localhost:4000`
+
+## GraphQL Schema
+
+GraphQL Schema is a collection of GraphQL types.
+You can design the schema based on your needs.
+For now, the schema is defined in `index.js` file.
+
+```js
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`;
+```
+
+But you can define the schema in a separate file and import it in `index.js` file.
+
+### Some basic grammar rules of GraphQL Schema
+
+- Methods:
+  - `type`: Defines a new type
+  - `Query`: Defines a query type, get data from the server, similar to GET
+  - `Mutation`: Defines a mutation type to change data on the server, similar to POST, PUT, and DELETE
+- Types:
+  - `String`: Defines a type of the field
+  - `[]`: Defines an array of the type
+  - `ID`: Defines a unique identifier
+  - `Int`: Defines an integer
+  - `Float`: Defines a float
+  - `Boolean`: Defines a boolean
+- Extra:
+  - `!`: Defines a required field, with `!`, the field is required and cannot be null.
+    By default, the field is optional and can be null.
+
+### Example of GraphQL Schema
+
+```js
+const typeDefs = gql`
+  type Query {
+    hello: String
+    user: User
+    users: [User]! # Array is required, but each item in the array is optional
+    userById(id: ID!): User
+  }
+
+  type Mutation {
+    createUser(
+      name: String!
+      email: String!
+      age: Int
+      isMale: Boolean
+      height: Float
+    ): User
+    deleteUser(id: ID!): Boolean!
+  }
+
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    age: Int
+    isMale: Boolean
+    height: Float
+  }
+`;
+```
