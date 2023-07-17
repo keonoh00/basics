@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "restql": "nodemon restql.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.12.0",
-    "graphql": "^16.7.1"
+    "graphql": "^16.7.1",
+    "node-fetch": "^3.3.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
