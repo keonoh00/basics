@@ -1,8 +1,8 @@
 # movie-api-graphql
 
-Simple Movie API using GraphQL and NodeJS
+Simple Movie API using GraphQL, Apollo Server and NodeJS
 
-## Some background informations
+## APIs
 
 ### REST API
 
@@ -33,9 +33,8 @@ GraphQL tries to solve problems of REST API.
 - `Over-fetching`: Getting unnecessary data
   - GraphQL returns the exact data that you want to get, while REST API returns all the data defined by the backend.
 - `Under-fetching`: Need to call multiple endpoints to get the data
-  - GraphQL allows you to get all the data you need in a single request, while REST API might have to call multiple endpoints to get the data you want. Caling multiple endpoints can result in a slow response time.
 
-## Getting Started
+  - GraphQL allows you to get all the data you need in a single request, while REST API might have to call multiple endpoints to get the data you want. Caling multiple endpoints can result in a slow response time.
 
 ### Try GraphQL online
 
@@ -64,3 +63,10 @@ GraphQL tries to solve problems of REST API.
   }
 }
 ```
+
+## Apollo Server
+
+`Apollo Server` is an open-source server, which supports GraphQL specification.
+You can use `Apollo Server` just like an NodeJS Server.
+If you already have `Express`, `Fastify`, `Hapi`, or `Koa` server, you can use `Apollo Server` on top of your existing server by adding middleware to it.
+It does not matter whether you have established the server based on REST API.
