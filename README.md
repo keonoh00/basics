@@ -2,8 +2,21 @@
 
 Simple Movie API using GraphQL, Apollo Server and NodeJS
 
+## Table of Contents
+
+[APIs](#APIs)  
+[Apollo Server](#apollo-server)
+[Setup Process](#setup-process)
+[GraphQL Schema](#graphql-schema)
+[GraphQL Resolvers](#graphql-resolvers)
+[GraphQL Playground](#graphql-playground)
+[GraphQL React Demo](#graphql-react-demo)
+
+<a name="APIs">
+
 ## APIs
 
+</a>
 ### REST API
 
 REST API is one of the popular methods to create an API.
@@ -64,14 +77,22 @@ GraphQL tries to solve problems of REST API.
 }
 ```
 
+<a name="apollo-server">
+
 ## Apollo Server
+
+</a>
 
 `Apollo Server` is an open-source server, which supports GraphQL specification.
 You can use `Apollo Server` just like an NodeJS Server.
 If you already have `Express`, `Fastify`, `Hapi`, or `Koa` server, you can use `Apollo Server` on top of your existing server by adding middleware to it.
 It does not matter whether you have established the server based on REST API.
 
+<a name="setup-process">
+
 ## Setup Process
+
+</a>
 
 The below process is the setup process of this project.
 If you want to create a new project, you can follow the below process.
@@ -134,7 +155,7 @@ server.listen().then(({ url }) => {
 ### 6. Run the server
 
 ```bash
-npm start
+npm server
 ```
 
 If you encounter an error saying: Cannot use import statement outside a module
@@ -143,7 +164,7 @@ Add `"type": "module"` in `package.json`
 ```json
 {
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon server.js"
   },
   "type": "module"
 }
@@ -151,7 +172,11 @@ Add `"type": "module"` in `package.json`
 
 ### 7. Open the browser and go to `http://localhost:4000`
 
+<a name="graphql-schema">
+
 ## GraphQL Schema
+
+</a>
 
 GraphQL Schema is a collection of GraphQL types.
 You can design the schema based on your needs.
@@ -217,7 +242,11 @@ const typeDefs = gql`
 `;
 ```
 
+<a name="graphql-resolvers">
+
 ## GraphQL Resolvers
+
+</a>
 
 GraphQL Resolvers are functions that are responsible for returning data for a field that exists on a GraphQL type definition.
 
@@ -315,7 +344,11 @@ From above example, `mutation createUser` should return `User` type.
 However, the `createUser` mutation resolver does not return `email`, `age`, `isMale`, and `height` fields.
 So GraphQL looks for `User` type resolver, and it returns the data for `email`, `age`, `isMale`, and `height` fields.
 
+<a name="graphql-playground">
+
 ## GraphQL Playground
+
+</a>
 
 GraphQL Playground is a GraphQL IDE that allows you to interact with the GraphQL API.
 You can use GraphQL Playground to test your GraphQL API.
@@ -359,3 +392,9 @@ mutation {
   }
 }
 ```
+
+<a name="graphql-react-demo">
+
+## GraphQL React Demo
+
+</a>
