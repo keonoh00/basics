@@ -190,7 +190,7 @@ But you can define the schema in a separate file and import it in `index.js` fil
 const typeDefs = gql`
   type Query {
     hello: String
-    user: User
+    user(id: ID!): User
     users: [User]! # Array is required, but each item in the array is optional
     userById(id: ID!): User
   }
@@ -215,4 +215,46 @@ const typeDefs = gql`
     height: Float
   }
 `;
+```
+
+## GraphQL Resolvers
+
+GraphQL Resolvers are functions that are responsible for returning data for a field that exists on a GraphQL type definition.
+
+You need to first define the type of resolver `Query` or `Mutation`, then define the name of the resolver, and finally define the function that returns the data.
+
+### Example of GraphQL Resolvers
+
+```js
+const resolvers = {
+  Query: {
+    hello: () => "Hello World!",
+    user: (root, args) => {
+      // Get data from database
+      return {
+        id: args.id,
+        name: "John",
+        email: "",
+        age: null,
+        isMale: null,
+        height: null,
+      };
+    },
+  },
+  Mutation: {
+    // Root is given as the first argument by default
+    // Full list of arguments: (root, args, context, info)
+    createUser: (root, args) => {
+      const newUser = {
+        id: "2",
+        name: args.name,
+        email: args.email,
+        age: args.age,
+        isMale: args.isMale,
+        height: args.height,
+      };
+      return newUser;
+    },
+  },
+};
 ```
