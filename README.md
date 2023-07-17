@@ -258,3 +258,49 @@ const resolvers = {
   },
 };
 ```
+
+### Type Resolver
+
+---
+
+Type Resolver is a function that is responsible for returning a type for a GraphQL type definition.
+
+For example, if you have a field `User` in `Query` type, and any of the fields in `User` type is not defined in the schema, you can define the type resolver for `User` type.
+
+```js
+// For instance, from above example, we don't return `email` field in `user` resolver
+// So we can define the type resolver for `User` type
+
+const resolvers = {
+  User: {
+    email: () => {
+      // You can define the process to get the email and return it
+      return "SomeDummy@email.com";
+    },
+    age: () => 20,
+    isMale: () => true,
+    height: () => 180,
+  },
+  Query: {
+    hello: () => "Hello World!",
+    user: (root, args) => {
+      // Get data from database
+      return {
+        id: args.id,
+        name: "John",
+      };
+    },
+  },
+  Mutation: {
+    // Root is given as the first argument by default
+    // Full list of arguments: (root, args, context, info)
+    createUser: (root, args) => {
+      const newUser = {
+        id: "2",
+        name: args.name,
+      };
+      return newUser;
+    },
+  },
+};
+```
