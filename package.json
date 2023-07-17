@@ -1,12 +1,11 @@
 {
-  "name": "movie-api",
+  "name": "graphql-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "restql": "nodemon restql.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "restql": "nodemon restql.js"
   },
   "keywords": [],
   "author": "",
