@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "server": "nodemon server.js",
-    "movie-server": "nodemon restql.js",
     "start": "react-scripts start"
   },
   "author": "Keon Oh Kim",
