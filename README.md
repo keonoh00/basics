@@ -259,6 +259,12 @@ const resolvers = {
 };
 ```
 
+### Arguments of GraphQL Resolvers
+
+GraphQL Resolvers have 4 arguments: `root`, `args`, `context`, and `info`.
+
+#### `root`
+
 ### Type Resolver
 
 ---
@@ -304,6 +310,10 @@ const resolvers = {
   },
 };
 ```
+
+From above example, `mutation createUser` should return `User` type.
+However, the `createUser` mutation resolver does not return `email`, `age`, `isMale`, and `height` fields.
+So GraphQL looks for `User` type resolver, and it returns the data for `email`, `age`, `isMale`, and `height` fields.
 
 ## GraphQL Playground
 
