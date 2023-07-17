@@ -23,6 +23,7 @@ Simple Movie API using GraphQL, Apollo Server and NodeJS
 ## APIs
 
 </a>
+
 ### REST API
 
 REST API is one of the popular methods to create an API.
@@ -148,12 +149,12 @@ server.listen().then(({ url }) => {
 });
 ```
 
-### 5. Add `start` script in `package.json`
+### 5. Add `server` script in `package.json`
 
 ```json
 {
   "scripts": {
-    "start": "nodemon index.js"
+    "server": "nodemon server.js"
   }
 }
 ```
@@ -161,7 +162,7 @@ server.listen().then(({ url }) => {
 ### 6. Run the server
 
 ```bash
-npm server
+npm run server
 ```
 
 If you encounter an error saying: Cannot use import statement outside a module
@@ -170,7 +171,7 @@ Add `"type": "module"` in `package.json`
 ```json
 {
   "scripts": {
-    "start": "nodemon server.js"
+    "server": "nodemon server.js"
   },
   "type": "module"
 }
