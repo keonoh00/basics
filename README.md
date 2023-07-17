@@ -70,3 +70,53 @@ GraphQL tries to solve problems of REST API.
 You can use `Apollo Server` just like an NodeJS Server.
 If you already have `Express`, `Fastify`, `Hapi`, or `Koa` server, you can use `Apollo Server` on top of your existing server by adding middleware to it.
 It does not matter whether you have established the server based on REST API.
+
+## Setup Process
+
+The below process is the setup process of this project.
+If you want to create a new project, you can follow the below process.
+You will be able to setup your new project with GraphQL and Apollo Server.
+
+### 1. Create a new project
+
+```bash
+mkdir <project-name>
+cd <project-name>
+npm init -y
+
+# For this project:
+mkdir movie-api
+cd movie-api
+npm init -y
+```
+
+### 2. Install dependencies
+
+```bash
+npm install apollo-server graphql
+```
+
+### 3. Install DEV dependencies
+
+```bash
+npm install --save-dev nodemon
+```
+
+### 4. Create a new file `index.js`
+
+```js
+import { ApolloServer, gql } from "apollo-server";
+
+// Shape of the data
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`;
+
+const server = new ApolloServer({ typeDefs });
+
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});
+```
