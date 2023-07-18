@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { MoviesController } from './movies/movies.controller';
 
 /*
 NestJS likes to separate the business logic from the controller.
@@ -10,7 +11,7 @@ The actual business logic is defined in the service. eg. app.service.ts -> AppSe
 
 @Module({
   imports: [],
-  controllers: [],
+  controllers: [MoviesController],
   providers: [],
 })
 
