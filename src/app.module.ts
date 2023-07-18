@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { MoviesController } from './movies/movies.controller';
-import { MoviesService } from './movies/movies.service';
+import { MoviesModule } from './movies/movies.module';
+import { AppController } from './app/app.controller';
 
 /*
 NestJS likes to separate the business logic from the controller.
@@ -10,10 +10,11 @@ So in the controller, we only define the function that will be called when the c
 The actual business logic is defined in the service. eg. app.service.ts -> AppService class -> getHello() function.
 */
 
+// AppModule should only have AppController and AppService.
 @Module({
-  imports: [],
-  controllers: [MoviesController],
-  providers: [MoviesService],
+  imports: [MoviesModule],
+  controllers: [AppController],
+  providers: [],
 })
 
 // AppModule is a root module of the application, it ties all the pieces together.
