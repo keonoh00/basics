@@ -21,6 +21,8 @@ NestJS Study - From making Contorller, Provider, Module, to Unit and E2E Testing
   - [CLI](#cli)
   - [Pipes](#pipes)
   - [Routing](#routing)
+- [NestJS Unit Testing](#nestjs-unit-testing)
+- [NestJS E2E Testing](#nestjs-e2e-testing)
 - [NestJS Fastify](#nestjs-fastify)
 - [NestJS README](#nestjs-readme)
 
@@ -268,6 +270,41 @@ export class AppController {
 }
 ```
 
+<a name="nestjs-unit-testing">
+
+## NestJS Unit Testing
+
+</a>
+
+NestJS provides a testing module.
+Unit testing is a process of testing a unit of the application.
+
+### Checking Test Coverage with Jest
+
+```bash
+npm run test:cov
+```
+
+This basically looks for `spec.ts` extension files and checks the coverage of the tests of the application.
+
+### Test Watch
+
+```bash
+npm run test:watch
+```
+
+This allows to continuously interact with the tests.
+
+<a name="nestjs-e2e-testing">
+
+## NestJS E2E Testing
+
+</a>
+
+E2E Testing stands for End to End Testing.
+This test is used to test the application as a whole.
+Starting from the request, to the response, it tests the whole process.
+
 <a name="nestjs-fastify">
 
 ## NestJS Fastify
@@ -291,7 +328,11 @@ getHello(@Req() req, @Res() res): string {
 }
 ```
 
+<a name="nestjs-readme">
+
 ## NestJS README
+
+</a>
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
