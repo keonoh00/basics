@@ -11,6 +11,7 @@ import {
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Controller('movies')
 export class MoviesController {
@@ -47,7 +48,10 @@ export class MoviesController {
 
   // @Put('/:id') // Put is used to update the entire resource.
   @Patch('/:id') // Patch is used to update only a part of the resource.
-  updateMovieById(@Param('id') movieId: number, @Body() updateData) {
+  updateMovieById(
+    @Param('id') movieId: number,
+    @Body() updateData: UpdateMovieDto,
+  ) {
     return this.moviesService.update(movieId, updateData);
   }
 }

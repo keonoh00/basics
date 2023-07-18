@@ -1,6 +1,6 @@
 // DTO stands for Data Transfer Object
 
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateMovieDto {
   @IsString()
@@ -9,6 +9,7 @@ export class CreateMovieDto {
   @IsNumber()
   readonly year: number;
 
+  @IsOptional() // This decorator means that this property is optional.
   @IsString({ each: true })
   readonly genres: string[];
 }
