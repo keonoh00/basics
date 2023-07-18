@@ -1,6 +1,6 @@
 # hi-nestjs
 
-Studying NestJS.
+NestJS Study - From making Contorller, Provider, Module, to Unit and E2E Testing.
 
 <a name="table-of-contents">
 
