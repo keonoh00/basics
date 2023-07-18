@@ -104,4 +104,27 @@ describe('MoviesService', () => {
       expect(afterCreate).toBeGreaterThan(beforeCreate);
     });
   });
+
+  describe('update()', () => {
+    it('should update when existing', () => {
+      const testMovieObj = {
+        title: 'Test Movie',
+        genres: ['test'],
+        year: 2000,
+      };
+      service.create(testMovieObj);
+
+      const lengthBeforeUpdate = service.getAll().length;
+      const newTitle = '[Edited] New Title of Test Movie';
+      service.update(1, { title: newTitle });
+      const lengthAfterUpdate = service.getAll().length;
+      const updatedMovie = service.getOne(1);
+
+      expect(lengthBeforeUpdate).toEqual(lengthAfterUpdate);
+      expect(updatedMovie.id).toEqual(1);
+      expect(updatedMovie.title).toEqual(newTitle);
+      expect(updatedMovie.year).toEqual(testMovieObj.year);
+      expect(updatedMovie.genres).toEqual(testMovieObj.genres);
+    });
+  });
 });
