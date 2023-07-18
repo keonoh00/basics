@@ -1,4 +1,13 @@
-import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 
 @Controller('movies')
 export class MoviesController {
@@ -8,8 +17,15 @@ export class MoviesController {
   }
 
   @Post()
-  createMovie() {
-    return 'This will create a movie';
+  createMovie(@Body() movieData) {
+    return `This will create a movie: ${movieData}`;
+  }
+
+  // Just like an ExpressJS if search controller is under /:id, then "search" will be considerd as id
+  @Get('/search')
+  searchMovie(@Query() searchQuery) {
+    console.log(searchQuery);
+    return `Searching for movie with title: ${JSON.stringify(searchQuery)}`;
   }
 
   @Get('/:id') // Same as ExpressJS: app.get('/movies/:id')
@@ -26,7 +42,7 @@ export class MoviesController {
 
   // @Put('/:id') // Put is used to update the entire resource.
   @Patch('/:id') // Patch is used to update only a part of the resource.
-  updateMovieById(@Param('id') movieId: string) {
-    return `Updating movie with id: ${movieId}`;
+  updateMovieById(@Param('id') movieId: string, @Body() updateData) {
+    return `Updating movie with id: ${movieId}\n${JSON.stringify(updateData)}`;
   }
 }
