@@ -8,17 +8,23 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { MoviesService } from './movies.service';
+import { Movie } from './entities/movie.entity';
 
 @Controller('movies')
 export class MoviesController {
+  constructor(private readonly moviesService: MoviesService) {}
+
   @Get()
-  getAllMovies() {
-    return 'This will return all movies';
+  getAllMovies(): Movie[] {
+    return this.moviesService.getAll();
   }
 
   @Post()
-  createMovie(@Body() movieData) {
-    return `This will create a movie: ${movieData}`;
+  createMovie(
+    @Body() movieData, // NestJS should ask for the parameter, it cannot automatically know what the parameter is.
+  ) {
+    return this.moviesService.create(movieData);
   }
 
   // Just like an ExpressJS if search controller is under /:id, then "search" will be considerd as id
@@ -29,20 +35,18 @@ export class MoviesController {
   }
 
   @Get('/:id') // Same as ExpressJS: app.get('/movies/:id')
-  getMovieById(
-    @Param('id') movieId: string, // NestJS should ask for the parameter, it cannot automatically know what the parameter is.
-  ) {
-    return `This will return one movie with the id: ${movieId}`;
+  getMovieById(@Param('id') movieId: string) {
+    return this.moviesService.getOne(movieId);
   }
 
   @Delete('/:id')
   deleteMovieById(@Param('id') movieId: string) {
-    return `Deleting movie with id: ${movieId}`;
+    return this.moviesService.deleteOne(movieId);
   }
 
   // @Put('/:id') // Put is used to update the entire resource.
   @Patch('/:id') // Patch is used to update only a part of the resource.
   updateMovieById(@Param('id') movieId: string, @Body() updateData) {
-    return `Updating movie with id: ${movieId}\n${JSON.stringify(updateData)}`;
+    return this.moviesService.update(movieId, updateData);
   }
 }

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MoviesController } from './movies/movies.controller';
+import { MoviesService } from './movies/movies.service';
 
 /*
 NestJS likes to separate the business logic from the controller.
@@ -12,7 +13,7 @@ The actual business logic is defined in the service. eg. app.service.ts -> AppSe
 @Module({
   imports: [],
   controllers: [MoviesController],
-  providers: [],
+  providers: [MoviesService],
 })
 
 // AppModule is a root module of the application, it ties all the pieces together.
