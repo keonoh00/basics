@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 @Controller('movies')
 export class MoviesController {
@@ -22,7 +23,7 @@ export class MoviesController {
 
   @Post()
   createMovie(
-    @Body() movieData, // NestJS should ask for the parameter, it cannot automatically know what the parameter is.
+    @Body() movieData: CreateMovieDto, // NestJS should ask for the parameter, it cannot automatically know what the parameter is.
   ) {
     return this.moviesService.create(movieData);
   }
@@ -35,18 +36,18 @@ export class MoviesController {
   }
 
   @Get('/:id') // Same as ExpressJS: app.get('/movies/:id')
-  getMovieById(@Param('id') movieId: string) {
+  getMovieById(@Param('id') movieId: number) {
     return this.moviesService.getOne(movieId);
   }
 
   @Delete('/:id')
-  deleteMovieById(@Param('id') movieId: string) {
+  deleteMovieById(@Param('id') movieId: number) {
     return this.moviesService.deleteOne(movieId);
   }
 
   // @Put('/:id') // Put is used to update the entire resource.
   @Patch('/:id') // Patch is used to update only a part of the resource.
-  updateMovieById(@Param('id') movieId: string, @Body() updateData) {
+  updateMovieById(@Param('id') movieId: number, @Body() updateData) {
     return this.moviesService.update(movieId, updateData);
   }
 }
