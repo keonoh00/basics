@@ -21,8 +21,9 @@ NestJS Study - From making Contorller, Provider, Module, to Unit and E2E Testing
   - [CLI](#cli)
   - [Pipes](#pipes)
   - [Routing](#routing)
-- [NestJS Unit Testing](#nestjs-unit-testing)
-- [NestJS E2E Testing](#nestjs-e2e-testing)
+- [Testing](#testing)
+  - [NestJS Unit Testing](#nestjs-unit-testing)
+  - [NestJS E2E Testing](#nestjs-e2e-testing)
 - [NestJS Fastify](#nestjs-fastify)
 - [NestJS README](#nestjs-readme)
 
@@ -270,16 +271,228 @@ export class AppController {
 }
 ```
 
-<a name="nestjs-unit-testing">
+<a name="testing">
 
-## NestJS Unit Testing
+## Testing
 
 </a>
 
 NestJS provides a testing module.
 Unit testing is a process of testing a unit of the application.
 
-### Checking Test Coverage with Jest
+### Jest Basic Guide and Grammar
+
+#### `describe()`
+
+`describe()` is used to group tests.
+It takes two arguments.
+First argument is the name of the group.
+Second argument is the function that contains tests.
+
+```ts
+describe('AppController', () => {
+  // ...
+});
+```
+
+#### `it()`
+
+`it()` is used to define a test.
+It takes two arguments.
+First argument is the name of the test.
+Second argument is the function that contains the test.
+
+```ts
+describe('AppController', () => {
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      // ...
+    });
+  });
+});
+```
+
+#### `expect()`
+
+`expect()` is used to check the result of the test.
+It takes one argument.
+The argument is the value that is expected to be returned.
+
+```ts
+describe('AppController', () => {
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+});
+```
+
+#### `beforeEach()`
+
+`beforeEach()` is used to run a function before each test.
+It takes one argument.
+The argument is the function that is run before each test.
+
+```ts
+describe('AppController', () => {
+  let appController: AppController;
+
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    }).compile();
+
+    appController = app.get<AppController>(AppController);
+  });
+
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+});
+```
+
+#### `beforeAll()`
+
+`beforeAll()` is used to run a function before all tests.
+It takes one argument.
+The argument is the function that is run before all tests.
+
+```ts
+describe('AppController', () => {
+  let appController: AppController;
+
+  beforeAll(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    }).compile();
+
+    appController = app.get<AppController>(AppController);
+  });
+
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+});
+```
+
+#### `afterEach()`
+
+`afterEach()` is used to run a function after each test.
+It takes one argument.
+The argument is the function that is run after each test.
+
+```ts
+describe('AppController', () => {
+  let appController: AppController;
+
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    }).compile();
+
+    appController = app.get<AppController>(AppController);
+  });
+
+  afterEach(async () => {
+    // ...
+  });
+
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+});
+```
+
+#### `afterAll()`
+
+`afterAll()` is used to run a function after all tests.
+It takes one argument.
+The argument is the function that is run after all tests.
+
+```ts
+describe('AppController', () => {
+  let appController: AppController;
+
+  beforeAll(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    }).compile();
+
+    appController = app.get<AppController>(AppController);
+  });
+
+  afterAll(async () => {
+    // ...
+  });
+
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+});
+```
+
+#### `toBe()`
+
+`toBe()` is used to check if the value is equal to the expected value.
+It takes one argument.
+The argument is the expected value.
+
+```ts
+describe('root', () => {
+  it('should return "Hello World!"', () => {
+    expect(appController.getHello()).toBe('Hello World!');
+  });
+});
+```
+
+#### `toEqual()`
+
+`toEqual()` is used to check if the value is equal to the expected value.
+It takes one argument.
+The argument is the expected value.
+
+```ts
+describe('root', () => {
+  it('should return "Hello World!"', () => {
+    expect(appController.getHello()).toEqual('Hello World!');
+  });
+});
+```
+
+#### `toContain()`
+
+`toContain()` is used to check if the value contains the expected value.
+It takes one argument.
+The argument is the expected value.
+
+```ts
+describe('root', () => {
+  it('should return "Hello World!"', () => {
+    expect(appController.getHello()).toContain('Hello');
+  });
+});
+```
+
+<a name="nestjs-unit-testing">
+
+### NestJS Unit Testing
+
+</a>
+
+#### Checking Test Coverage with Jest
 
 ```bash
 npm run test:cov
@@ -287,7 +500,7 @@ npm run test:cov
 
 This basically looks for `spec.ts` extension files and checks the coverage of the tests of the application.
 
-### Test Watch
+#### Test Watch
 
 ```bash
 npm run test:watch
@@ -297,7 +510,7 @@ This allows to continuously interact with the tests.
 
 <a name="nestjs-e2e-testing">
 
-## NestJS E2E Testing
+### NestJS E2E Testing
 
 </a>
 
