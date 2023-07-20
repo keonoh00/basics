@@ -486,6 +486,11 @@ describe('root', () => {
 });
 ```
 
+#### `toDo()`
+
+`toDo()` is used to record some of the testings to do in the future.
+It takes one argument.
+
 <a name="nestjs-unit-testing">
 
 ### NestJS Unit Testing
@@ -517,6 +522,34 @@ This allows to continuously interact with the tests.
 E2E Testing stands for End to End Testing.
 This test is used to test the application as a whole.
 Starting from the request, to the response, it tests the whole process.
+One of the advanges of E2E testing is that it sends a real request to the application.
+In other words, it tests `controller`, `service`, `module`, and `pipe` together.
+
+However, the settings of the real environment should match the settings of the test environment.
+eg. the `pipe` setting of the real environment automatically converts the data type when `transform` is set to `true`.
+But in the test environment, this setting is not synchronized.
+
+#### Runnig E2E Test
+
+```bash
+npm run test:e2e
+```
+
+#### E2E Testing with Supertest
+
+E2E testing file is located in `test/app.e2e-spec.ts`.
+
+- `request`: `supertest` is used to send a request to the application.
+- `app.getHttpServer()`: `app.getHttpServer()` is used to get the instance of the application.
+  - `app.getHttpServer().get(url)` is used to send a GET request to the application.
+  - `app.getHttpServer().post(url)` is used to send a POST request to the application.
+  - `app.getHttpServer().delete(url)` is used to send a DELETE request to the application.
+  - `app.getHttpServer().patch(url)` is used to send a PATCH request to the application.
+
+In E2E testing, in some cases, we test the returning response code.
+For example, if the request is successful, it should return `200` response code.
+If the request is not successful, it should return `400` response code.
+In this case, we can use `expect(200)` to check the response code.
 
 <a name="nestjs-fastify">
 
