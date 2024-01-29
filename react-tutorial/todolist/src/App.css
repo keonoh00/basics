@@ -1,0 +1,7 @@
+.container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background-image: url("../assets/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg")
+}

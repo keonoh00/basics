@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+  background-image: url("https://media.istockphoto.com/id/1289615241/vector/abstract-vector-background-halftone-gradient-gradation-vibrant-texture.jpg?s=612x612&w=0&k=20&c=9FMoFy896vzuf7gZMTai6rXKl_KwEKdajRD9YLcpy1Q=");
+  height: 1000px;
+}
+
+.date {
+  color: beige;
+  padding-top: 64px;
+}
+
+.time {
+  color: beige;
+  padding-top: 20px
+}
+
+.todo-input {
+  margin-top: 60px;
+  padding: 12px 8px;
+  background-color: transparent;
+  border-width: 0px 0px 1px 0px;
+  font-size: 20px;
+  outline: none;
+  color: white;
+}
+
+.todo-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.todo {
+  width: 200px;
+  color: whitesmoke;
+  font-size: 18px;
+  text-align: left;
+}
+
+
+.delete {
+  background-color: white;
+  border-width: 0px;
+  border-radius: 5px;
+}
